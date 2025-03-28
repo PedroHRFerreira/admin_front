@@ -1,0 +1,25 @@
+.header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px;
+}
+
+.main {
+  width: 100%;
+  min-height: 680px;
+  display: flex;
+  flex-direction: row;
+  background: transparent;
+
+  .aside {
+    background: transparent;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .article {
+    width: 100%;
+    height: auto;
+    padding: min(32px, 2vw);
+    background: rgb(0, 13, 25);
+    z-index: 20;
+  }
+}

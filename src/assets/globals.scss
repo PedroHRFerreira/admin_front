@@ -22,8 +22,9 @@ body {
   font-family: "Montserrat", serif;
   font-optical-sizing: auto;
   line-height: 1.5;
+  text-align: left;
   color: #fff;
-  background-color: #010409;
+  background-color: #010b13;
 }
 
 @mixin responsive($breakpoint) {
@@ -87,6 +88,7 @@ ul {
 }
 
 a {
+  width: 100%;
   text-decoration: none;
   color: inherit;
 

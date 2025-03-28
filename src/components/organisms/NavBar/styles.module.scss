@@ -1,0 +1,58 @@
+.aside {
+  padding-top: 32px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  &__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 200px;
+
+    li {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      align-items: center;
+      list-style: none;
+      padding: 10px 44px;
+
+      .link {
+        display: flex;
+        justify-content: flex-start;
+      }
+    }
+    .active {
+      background: rgba(4, 28, 51, 0.3);
+      backdrop-filter: blur(10px);
+      border-radius: 0 2px 2px 0;
+      width: 100%;
+      z-index: 20;
+
+      &::before {
+        position: absolute;
+        left: 0;
+        content: "";
+        width: 5px;
+        height: 36px;
+        border-radius: 0 4px 4px 0;
+        background: #fff;
+      }
+    }
+  }
+  &__footer {
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    background: rgb(0, 13, 25);
+    bottom: 0;
+
+    &__admin {
+      padding: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+}
