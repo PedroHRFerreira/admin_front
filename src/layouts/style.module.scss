@@ -5,8 +5,7 @@
 
 .main {
   width: 100%;
-  height: 100vh;
-  max-height: 854px;
+  height: calc(100vh - 85px);
   display: flex;
   flex-direction: row;
   background: transparent;
@@ -21,8 +20,7 @@
   }
 
   .article {
-    width: 100%;
-    height: auto;
+    flex-grow: 1;
     padding: min(32px, 2vw);
     background: rgb(0, 13, 25);
     z-index: 20;
