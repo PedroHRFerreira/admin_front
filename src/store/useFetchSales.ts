@@ -13,6 +13,6 @@ export interface SalesData {
 }
 
 export function useFetchSales() {
-  const url = "https://admin-back20-production.up.railway.app/api/sales";
+  const url = "http://localhost:8000/api/products";
   return useFetch<SalesData>(url);
 }
