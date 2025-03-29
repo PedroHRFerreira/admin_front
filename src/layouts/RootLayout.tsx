@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@/assets/globals.scss";
 import style from "./style.module.scss";
 import OrganismsNavBar from "@/components/organisms/NavBar/Index";
+import OrganismsSearchMenu from "@/components/organisms/SearchMenu/Index";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,7 +22,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <div className={`${geistSans.variable} ${geistMono.variable}`}>
       <header className={style.header}>
-        <h1>Header do Site</h1>
+        <OrganismsSearchMenu />
       </header>
       <main className={style.main}>
         <aside className={style.aside}>

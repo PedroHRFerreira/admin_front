@@ -5,4 +5,5 @@ export interface IAtomsTextProps {
   color?: string;
   lineHeight?: string;
   textAlign?: "left" | "center" | "right" | "justify";
+  className?: string;
 }
