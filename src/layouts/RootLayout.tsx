@@ -3,6 +3,7 @@ import "@/assets/globals.scss";
 import style from "./style.module.scss";
 import OrganismsNavBar from "@/components/organisms/NavBar/Index";
 import OrganismsSearchMenu from "@/components/organisms/SearchMenu/Index";
+import "@/assets/globals.scss";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
