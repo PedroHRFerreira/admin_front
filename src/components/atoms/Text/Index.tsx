@@ -8,10 +8,11 @@ const AtomsText: React.FC<IAtomsTextProps> = ({
   color = "#333",
   lineHeight = "1.5",
   textAlign = "left",
+  className = "",
 }) => {
   return (
     <p
-      className={style.text}
+      className={(style.text, className)}
       style={{ fontSize, fontWeight, color, lineHeight, textAlign }}
     >
       {children}

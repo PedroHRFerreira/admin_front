@@ -1,0 +1,50 @@
+.nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    @media (max-width: 768px) {
+      .nav__logo__text {
+        display: none;
+      }
+    }
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    &__icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__modal {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(25, 59, 92, 0.3);
+    width: 60px;
+    height: 60px;
+    border-radius: 25% 0 0 25%;
+    z-index: 30;
+    transition: border 0.5s ease-in-out;
+
+    &:hover {
+      border: 1px solid rgba(11, 39, 65, 0.8);
+    }
+
+    &__icon {
+      margin: 0 auto;
+    }
+  }
+}

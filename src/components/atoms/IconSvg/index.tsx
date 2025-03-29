@@ -8,6 +8,7 @@ const AtomsIconSvg: React.FC<IAtomsIconSvgProps> = ({
   width = "24px",
   height = "24px",
   className = "",
+  clickIcon,
 }) => {
   return (
     <Image
@@ -16,6 +17,7 @@ const AtomsIconSvg: React.FC<IAtomsIconSvgProps> = ({
       className={`${style.icon} ${className}`}
       width={parseInt(width)}
       height={parseInt(height)}
+      onClick={() => clickIcon}
     />
   );
 };

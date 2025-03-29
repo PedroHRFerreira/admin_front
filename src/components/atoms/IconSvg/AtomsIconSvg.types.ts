@@ -4,4 +4,5 @@ export interface IAtomsIconSvgProps {
   height?: string;
   fill?: string;
   className?: string;
+  clickIcon?: () => void | undefined;
 }
