@@ -1,10 +1,11 @@
 import RootLayout from "@/layouts/RootLayout";
+import OrganismsGraphic from "@/components/organisms/Graphic/Index";
 
 export default function Home() {
   return (
     <RootLayout>
       <article>
-        <h1>Tela de Home</h1>
+        <OrganismsGraphic />
       </article>
     </RootLayout>
   );
