@@ -1,10 +1,11 @@
 import RootLayout from "@/layouts/RootLayout";
+import TemplatesPagesCarousel from "@/components/templates/PagesCarousel /Index";
 
 export default function Home() {
   return (
     <RootLayout>
       <article>
-        <h1>Tela de Home</h1>
+        <TemplatesPagesCarousel />
       </article>
     </RootLayout>
   );
