@@ -1,0 +1,26 @@
+.table {
+  width: 100%;
+  border: 1px solid #a8a295;
+  border-radius: 6px;
+  border-collapse: collapse;
+  overflow-x: auto;
+
+  &__th,
+  &__td {
+    padding: 16px;
+    text-align: center;
+    border-bottom: 1px solid #a8a295;
+    white-space: nowrap;
+  }
+
+  &__tbody {
+    .table__row {
+      display: table-row;
+      width: 100%;
+
+      &:hover {
+        background-color: #5d5d5d;
+      }
+    }
+  }
+}
