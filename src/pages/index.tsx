@@ -1,11 +1,11 @@
 import RootLayout from "@/layouts/RootLayout";
-import OrganismsPagesCarousel from "@/components/organisms/PagesCarousel /Index";
+import TemplatesPagesCarousel from "@/components/templates/PagesCarousel /Index";
 
 export default function Home() {
   return (
     <RootLayout>
       <article>
-        <OrganismsPagesCarousel />
+        <TemplatesPagesCarousel />
       </article>
     </RootLayout>
   );

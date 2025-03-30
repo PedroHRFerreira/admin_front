@@ -6,7 +6,7 @@ import AtomsText from "@/components/atoms/Text/Index";
 import OrganismsGraphic from "@/components/organisms/Graphic/Index";
 import OrganismsData from "@/components/organisms/Data/Index";
 
-const OrganismsPagesCarousel = () => {
+const TemplatesPagesCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const texts = [
     {
@@ -109,4 +109,4 @@ const OrganismsPagesCarousel = () => {
   );
 };
 
-export default OrganismsPagesCarousel;
+export default TemplatesPagesCarousel;
