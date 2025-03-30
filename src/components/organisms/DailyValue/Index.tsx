@@ -54,7 +54,7 @@ const OrganismsDailyValue = () => {
 
       <MoleculesModal
         isOpen={isModalOpen}
-        textSave="Salvar"
+        textSave={value && quantity ? "Salvar" : ""}
         title="valor da venda"
         onSave={handleSave}
         onCancel={close}
