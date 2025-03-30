@@ -38,8 +38,6 @@ const options: ChartOptions<"bar"> = {
 const OrganismsGraphic = () => {
   const { data, loading, error } = useFetchSales();
 
-  console.log(data?.sales);
-
   const chartData = {
     labels: data?.sales.map((item: any) => item.month) || [],
     datasets: [
@@ -53,7 +51,6 @@ const OrganismsGraphic = () => {
     ],
   };
 
-  console.log("chartData:", chartData);
   return (
     <section
       className={`${style.organismsGraphic} ${
