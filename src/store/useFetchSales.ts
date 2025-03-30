@@ -7,12 +7,10 @@ export interface SaleMonth {
 }
 
 export interface SalesData {
-  sale: {
-    month: SaleMonth[];
-  };
+  sales: SaleMonth[];
 }
 
 export function useFetchSales() {
-  const url = "http://localhost:8000/api/products";
+  const url = "http://localhost:8000/api/sales";
   return useFetch<SalesData>(url);
 }
