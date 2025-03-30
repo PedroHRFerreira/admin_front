@@ -4,17 +4,18 @@ import AtomsIconSvg from "@/components/atoms/IconSvg/index";
 import AtomsText from "@/components/atoms/Text/Index";
 
 import OrganismsGraphic from "@/components/organisms/Graphic/Index";
+import OrganismsData from "@/components/organisms/Data/Index";
 
 const OrganismsPagesCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const texts = [
     {
-      name: "componente 1",
+      name: "Home",
       component: OrganismsGraphic,
     },
     {
-      name: "componente 2",
-      component: "componente 2",
+      name: "Dados",
+      component: OrganismsData,
     },
     {
       name: "componente 3",

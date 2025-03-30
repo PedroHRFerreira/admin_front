@@ -36,9 +36,11 @@ const MoleculesModal: React.FC<IMoleculesModalProps> = ({
             <button className={style.cancel} onClick={onCancel}>
               Cancelar
             </button>
-            <button className={style.save} onClick={onSave}>
-              {textSave}
-            </button>
+            {textSave.trim() && (
+              <button className={style.save} onClick={onSave}>
+                {textSave}
+              </button>
+            )}
           </div>
         </div>
       )}

@@ -16,7 +16,7 @@ const MoleculesDashboard = ({ title, subTitle, text, onFooterClick }: any) => {
         <AtomsText fontSize="16px" fontWeight="normal" color="#fff">
           {text}
         </AtomsText>
-        <AtomsIconSvg className={styles.icon} name="seta-para-a-esquerda" />
+        <AtomsIconSvg className={styles.icon} name="seta" />
       </div>
     </section>
   );
