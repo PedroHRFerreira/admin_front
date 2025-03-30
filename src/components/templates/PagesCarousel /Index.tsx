@@ -5,6 +5,7 @@ import AtomsText from "@/components/atoms/Text/Index";
 
 import OrganismsGraphic from "@/components/organisms/Graphic/Index";
 import OrganismsData from "@/components/organisms/Data/Index";
+import OrganismsSalesList from "@/components/organisms/SalesList/Index";
 
 const TemplatesPagesCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -18,8 +19,8 @@ const TemplatesPagesCarousel = () => {
       component: OrganismsData,
     },
     {
-      name: "componente 3",
-      component: "componente 3",
+      name: "Listagem",
+      component: OrganismsSalesList,
     },
   ];
 

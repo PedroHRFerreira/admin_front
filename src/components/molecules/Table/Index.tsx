@@ -5,7 +5,7 @@ const MoleculesTable = ({ headers, rows, renderExtra }: any) => {
     <table className={style.table}>
       <thead className={style.table__header}>
         <tr>
-          {headers.map((header: string, index: any) => (
+          {headers.map((header: string, index: number) => (
             <th key={index} className={style.table__th}>
               {header}
             </th>
@@ -14,7 +14,7 @@ const MoleculesTable = ({ headers, rows, renderExtra }: any) => {
         </tr>
       </thead>
       <tbody className={style.table__tbody}>
-        {rows.map((row: string[], rowIndex: any) => (
+        {rows.map((row: string[], rowIndex: number) => (
           <tr key={rowIndex} className={style.table__row}>
             {row.map((cell, cellIndex) => (
               <td key={cellIndex} className={style.table__td}>
