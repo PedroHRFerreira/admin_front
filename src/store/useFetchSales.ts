@@ -8,12 +8,13 @@ export interface SaleMonth {
   month?: string;
   quantity: number;
   price: number;
-  id_user: number;
+  description: string;
   id: number;
 }
 
 export interface SalesData {
   sales: SaleMonth[];
+  status: string;
 }
 
 export function useFetchSales() {

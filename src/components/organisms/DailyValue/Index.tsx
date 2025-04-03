@@ -3,11 +3,14 @@ import { toast, Toaster } from "react-hot-toast";
 import MoleculesDashboard from "@/components/molecules/Dashboard/Index";
 import MoleculesModal from "@/components/molecules/Modal/Index";
 import MoleculesFormInputFloatLabel from "@/components/molecules/FormInputFloatLabel/Input";
+import { usePostSales } from "@/store/useFetchSales";
 
 const OrganismsDailyValue = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [value, setValue] = useState("");
   const [quantity, setQuantity] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [validateForm, setValidateForm] = useState(false);
 
   const Validate = () => {
@@ -23,6 +26,18 @@ const OrganismsDailyValue = () => {
       return;
     }
 
+    if (!name) {
+      toast.error("Informe o tipo de venda antes de salvar.");
+      setValidateForm(true);
+      return;
+    }
+
+    if (!description) {
+      toast.error("Informe uma descrição antes de salvar.");
+      setValidateForm(true);
+      return;
+    }
+
     return setValidateForm;
   };
 
@@ -31,13 +46,30 @@ const OrganismsDailyValue = () => {
     setValidateForm(false);
     setValue("");
     setQuantity("");
+    setDescription("");
+    setName("");
   };
 
   const handleSave = () => {
     Validate();
     if (validateForm) return;
 
-    console.log(value, quantity);
+    const form = {
+      month: new Date().toLocaleString("en-US", { month: "long" }),
+      value,
+      quantity,
+      name,
+      description,
+    };
+
+    const result = usePostSales(form);
+
+    if (result?.status === "error") {
+      toast.error("Erro ao salvar os dados");
+      close();
+      return;
+    }
+
     toast.success("Dados salvos com sucesso!");
     close();
   };
@@ -72,6 +104,20 @@ const OrganismsDailyValue = () => {
           value={quantity}
           onInput={setQuantity}
           mask="quantity"
+          errors={[]}
+        />
+
+        <MoleculesFormInputFloatLabel
+          label="Tipo de venda"
+          value={name}
+          onInput={setName}
+          errors={[]}
+        />
+
+        <MoleculesFormInputFloatLabel
+          label="Descrição da venda"
+          value={description}
+          onInput={setDescription}
           errors={[]}
         />
       </MoleculesModal>

@@ -23,7 +23,7 @@ const OrganismsSalesList = () => {
     data?.sales?.map((item) => ({
       id: item.id,
       values: [
-        item.id_user,
+        item.id,
         item.name,
         item.month,
         item.quantity.toString(),
