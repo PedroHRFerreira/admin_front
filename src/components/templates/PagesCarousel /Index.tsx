@@ -48,7 +48,7 @@ const TemplatesPagesCarousel = () => {
             activeIndex === 0 ? style.disabled : ""
           }`}
         >
-          <AtomsIconSvg width="24px" height="24px" name="seta" />
+          <AtomsIconSvg width="18px" height="18px" name="seta" />
           <AtomsText
             className={style.nav__logo__text}
             fontSize="16px"
@@ -97,8 +97,8 @@ const TemplatesPagesCarousel = () => {
           </AtomsText>
           <AtomsIconSvg
             className={style.icon}
-            width="24px"
-            height="24px"
+            width="18px"
+            height="18px"
             name="seta"
           />
         </button>
