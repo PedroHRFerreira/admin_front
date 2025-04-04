@@ -19,13 +19,13 @@ export function useFetchProducts() {
   return useFetch<ProductsData>(url);
 }
 
-export async function usePostProducts(newSales: product) {
+export async function usePostProducts(newProduct: product) {
   const response = await fetch("http://localhost:8000/api/products", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(newSales),
+    body: JSON.stringify(newProduct),
   });
 
   return response.json();

@@ -1,10 +1,24 @@
-import AtomsText from "@/components/atoms/Text/Index";
+import { useState } from "react";
 import MoleculesTable from "@/components/molecules/Table/Index";
+import MoleculesHeader from "@/components/molecules/Header/Index";
+import MoleculesModal from "@/components/molecules/Modal/Index";
+import MoleculesFormInputFloatLabel from "@/components/molecules/FormInputFloatLabel/Input";
 import style from "./styles.module.scss";
-import { useFetchProducts, useDeleteProducts } from "@/store/useFetchProducts";
+import {
+  useFetchProducts,
+  useDeleteProducts,
+  usePostProducts,
+} from "@/store/useFetchProducts";
 import { toast, Toaster } from "react-hot-toast";
 
 const OrganismsProductsList = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [image, setImage] = useState("");
+
   const { data, loading, error, refetch } = useFetchProducts();
 
   const handleDeleteProduct = async (id: number) => {
@@ -25,11 +39,64 @@ const OrganismsProductsList = () => {
       values: [item.id, item.name, item.quantity.toString(), item.image],
     })) ?? [];
 
+  const validate = () => {
+    if (!name) {
+      toast.error("Informe um nome antes de salvar.");
+      return false;
+    }
+    if (!price) {
+      toast.error("Informe um preço antes de salvar.");
+      return false;
+    }
+    if (!quantity) {
+      toast.error("Informe uma quantidade antes de salvar.");
+      return false;
+    }
+
+    return true;
+  };
+
+  const addProduct = async () => {
+    if (!validate()) return;
+
+    const formatPrice = (value: string) => {
+      return value.replace(/[^\d,\.]/g, "");
+    };
+
+    const cleanPrice = formatPrice(price);
+
+    const form = {
+      name,
+      description,
+      price: Number(cleanPrice.replace(",", ".")).toFixed(2),
+      quantity: Number(quantity),
+      image,
+    };
+
+    const response = await usePostProducts(form);
+
+    if (response?.status === "error") {
+      toast.error("Erro ao adicionar esse produto!");
+      return;
+    }
+
+    toast.success("Produto adicionado com sucesso!");
+    handleCloseModal();
+    refetch();
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setName("");
+    setDescription("");
+    setPrice("");
+    setQuantity("");
+    setImage("");
+  };
+
   return (
     <>
-      <AtomsText fontSize="24px" fontWeight="bold" color="#fff">
-        Listagem
-      </AtomsText>
+      <MoleculesHeader actionButton={() => setIsModalOpen(true)} />
       <Toaster />
       <section
         className={`${style.content} ${loading || error ? "loading" : ""}`}
@@ -51,6 +118,48 @@ const OrganismsProductsList = () => {
           />
         )}
       </section>
+      <MoleculesModal
+        isOpen={isModalOpen}
+        textSave="Adicionar"
+        title="Adicionar Produto"
+        onSave={addProduct}
+        onCancel={handleCloseModal}
+      >
+        <div className={style.modal}>
+          <MoleculesFormInputFloatLabel
+            label="Nome do produto*"
+            value={name}
+            onInput={setName}
+            errors={[]}
+          />
+          <MoleculesFormInputFloatLabel
+            label="Descrição"
+            value={description}
+            onInput={setDescription}
+            errors={[]}
+          />
+          <MoleculesFormInputFloatLabel
+            label="Preço do produto*"
+            value={price}
+            onInput={setPrice}
+            mask="currency"
+            errors={[]}
+          />
+          <MoleculesFormInputFloatLabel
+            label="quantidade do produto*"
+            value={quantity}
+            onInput={setQuantity}
+            mask="quantity"
+            errors={[]}
+          />
+          <MoleculesFormInputFloatLabel
+            label="Imagem do produto"
+            value={image}
+            onInput={setImage}
+            errors={[]}
+          />
+        </div>
+      </MoleculesModal>
     </>
   );
 };
