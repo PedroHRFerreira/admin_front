@@ -25,7 +25,7 @@ const OrganismsProductsList = () => {
     const response = await useDeleteProducts(id);
 
     if (response?.status === "error") {
-      toast.error("Erro ao remover essa produto!");
+      toast.error("Erro ao remover o produto!");
       return;
     }
 
