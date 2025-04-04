@@ -11,67 +11,63 @@ const OrganismsDailyValue = () => {
   const [quantity, setQuantity] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [validateForm, setValidateForm] = useState(false);
 
   const Validate = () => {
     if (!value) {
       toast.error("Informe um valor antes de salvar.");
-      setValidateForm(true);
-      return;
+      return false;
     }
 
     if (!quantity) {
       toast.error("Informe uma quantidade antes de salvar.");
-      setValidateForm(true);
-      return;
+      return false;
     }
 
     if (!name) {
       toast.error("Informe o tipo de venda antes de salvar.");
-      setValidateForm(true);
-      return;
+      return false;
     }
 
     if (!description) {
-      toast.error("Informe uma descrição antes de salvar.");
-      setValidateForm(true);
-      return;
+      toast.error("Informe uma descrição antes de salvar.");
+      return false;
     }
 
-    return setValidateForm;
+    return true;
   };
 
   const close = () => {
     setIsModalOpen(false);
-    setValidateForm(false);
     setValue("");
     setQuantity("");
     setDescription("");
     setName("");
   };
 
-  const handleSave = () => {
-    Validate();
-    if (validateForm) return;
+  const handleSave = async () => {
+    if (!Validate()) return;
 
     const form = {
       month: new Date().toLocaleString("en-US", { month: "long" }),
-      value,
-      quantity,
+      value: Number(value.replace("R$", "").replace(",", ".")),
+      quantity: Number(quantity),
       name,
       description,
     };
 
-    const result = usePostSales(form);
+    try {
+      const result = await usePostSales(form);
 
-    if (result?.status === "error") {
-      toast.error("Erro ao salvar os dados");
+      if (result?.status === "error") {
+        toast.error("Erro ao salvar os dados");
+        return;
+      }
+
+      toast.success("Dados salvos com sucesso!");
       close();
-      return;
+    } catch (error) {
+      toast.error("Erro ao conectar com o servidor.");
     }
-
-    toast.success("Dados salvos com sucesso!");
-    close();
   };
 
   return (
