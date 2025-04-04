@@ -29,7 +29,7 @@ const OrganismsProductsList = () => {
       return;
     }
 
-    toast.success("Produto removida com sucesso!");
+    toast.success("Produto removido com sucesso!");
     refetch();
   };
 
