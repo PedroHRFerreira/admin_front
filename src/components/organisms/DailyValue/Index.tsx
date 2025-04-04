@@ -3,43 +3,71 @@ import { toast, Toaster } from "react-hot-toast";
 import MoleculesDashboard from "@/components/molecules/Dashboard/Index";
 import MoleculesModal from "@/components/molecules/Modal/Index";
 import MoleculesFormInputFloatLabel from "@/components/molecules/FormInputFloatLabel/Input";
+import { usePostSales } from "@/store/useFetchSales";
 
 const OrganismsDailyValue = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [value, setValue] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [validateForm, setValidateForm] = useState(false);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
 
   const Validate = () => {
     if (!value) {
       toast.error("Informe um valor antes de salvar.");
-      setValidateForm(true);
-      return;
+      return false;
     }
 
     if (!quantity) {
       toast.error("Informe uma quantidade antes de salvar.");
-      setValidateForm(true);
-      return;
+      return false;
     }
 
-    return setValidateForm;
+    if (!name) {
+      toast.error("Informe o tipo de venda antes de salvar.");
+      return false;
+    }
+
+    if (!description) {
+      toast.error("Informe uma descrição antes de salvar.");
+      return false;
+    }
+
+    return true;
   };
 
   const close = () => {
     setIsModalOpen(false);
-    setValidateForm(false);
     setValue("");
     setQuantity("");
+    setDescription("");
+    setName("");
   };
 
-  const handleSave = () => {
-    Validate();
-    if (validateForm) return;
+  const handleSave = async () => {
+    if (!Validate()) return;
 
-    console.log(value, quantity);
-    toast.success("Dados salvos com sucesso!");
-    close();
+    const form = {
+      month: new Date().toLocaleString("en-US", { month: "long" }),
+      value: Number(value.replace("R$", "").replace(",", ".")),
+      quantity: Number(quantity),
+      name,
+      description,
+    };
+
+    try {
+      const result = await usePostSales(form);
+
+      if (result?.status === "error") {
+        toast.error("Erro ao salvar os dados");
+        return;
+      }
+
+      toast.success("Dados salvos com sucesso!");
+      close();
+    } catch (error) {
+      toast.error("Erro ao conectar com o servidor.");
+    }
   };
 
   return (
@@ -72,6 +100,20 @@ const OrganismsDailyValue = () => {
           value={quantity}
           onInput={setQuantity}
           mask="quantity"
+          errors={[]}
+        />
+
+        <MoleculesFormInputFloatLabel
+          label="Tipo de venda"
+          value={name}
+          onInput={setName}
+          errors={[]}
+        />
+
+        <MoleculesFormInputFloatLabel
+          label="Descrição da venda"
+          value={description}
+          onInput={setDescription}
           errors={[]}
         />
       </MoleculesModal>
