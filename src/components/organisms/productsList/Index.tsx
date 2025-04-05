@@ -128,7 +128,7 @@ const OrganismsProductsList = () => {
         {error && <p>Erro ao buscar dados: {error}</p>}
         {!loading && !error && (
           <MoleculesTable
-            headers={["id", "nome do produto", "Quantidade", "imagem"]}
+            headers={["id", "nome do produto", "Quantidade", "imagem", ""]}
             rows={rows.map((row) => row.values)}
             renderExtra={(rowIndex: number) => (
               <button

@@ -24,9 +24,11 @@ const MoleculesTable = ({ headers, rows, renderExtra, details }: any) => {
             <td className={style.table__td}>
               {renderExtra ? renderExtra(rowIndex) : null}
             </td>
-            <td className={style.table__td}>
-              {details ? details(rowIndex) : null}
-            </td>
+            {details && (
+              <td className={style.table__td}>
+                {details ? details(rowIndex) : null}
+              </td>
+            )}
           </tr>
         ))}
       </tbody>
