@@ -1,4 +1,3 @@
-import { useState } from "react";
 import style from "./styles.module.scss";
 import AtomsIconSvg from "@/components/atoms/IconSvg/index";
 import AtomsText from "@/components/atoms/Text/Index";
