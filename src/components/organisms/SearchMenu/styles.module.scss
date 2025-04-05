@@ -16,16 +16,6 @@
     }
   }
 
-  &__search {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    &__icon {
-      transform: rotate(180deg);
-    }
-  }
-
   &__modal {
     cursor: pointer;
     display: flex;
