@@ -1,5 +1,5 @@
 export interface IOrganismsProductsListDetails {
-  isModalOpen: boolean;
+  isModalOpen?: boolean;
   handleCloseModal: () => void | undefined;
   name: string;
   description: string;

@@ -30,7 +30,6 @@ const OrganismsProductsList = () => {
     if (!product) return;
 
     setSelectedProduct({
-      isModalOpen: true,
       handleCloseModal: () => setIsDetailsModalOpen(false),
       name: product.name,
       description: product.description,
@@ -177,7 +176,7 @@ const OrganismsProductsList = () => {
             errors={[]}
           />
           <MoleculesFormInputFloatLabel
-            label="quantidade do produto*"
+            label="Quantidade do produto*"
             value={quantity}
             onInput={setQuantity}
             mask="quantity"
