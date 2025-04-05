@@ -39,7 +39,7 @@ const OrganismsProductListDetails = ({
             errors={[]}
           />
           <MoleculesFormInputFloatLabel
-            label="quantidade do produto*"
+            label="Quantidade do produto*"
             value={quantity}
             mask="quantity"
             errors={[]}
