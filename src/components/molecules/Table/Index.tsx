@@ -1,6 +1,6 @@
 import style from "./styles.module.scss";
 
-const MoleculesTable = ({ headers, rows, renderExtra }: any) => {
+const MoleculesTable = ({ headers, rows, renderExtra, details }: any) => {
   return (
     <table className={style.table}>
       <thead className={style.table__header}>
@@ -24,6 +24,11 @@ const MoleculesTable = ({ headers, rows, renderExtra }: any) => {
             <td className={style.table__td}>
               {renderExtra ? renderExtra(rowIndex) : null}
             </td>
+            {details && (
+              <td className={style.table__td}>
+                {details ? details(rowIndex) : null}
+              </td>
+            )}
           </tr>
         ))}
       </tbody>

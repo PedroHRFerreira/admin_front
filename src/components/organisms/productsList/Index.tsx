@@ -9,6 +9,8 @@ import {
   useDeleteProducts,
   usePostProducts,
 } from "@/store/useFetchProducts";
+import OrganismsProductListDetails from "./Details/Index";
+import type { IOrganismsProductsListDetails } from "./Details/OrganismsProductsListDetails.types";
 import { toast, Toaster } from "react-hot-toast";
 
 const OrganismsProductsList = () => {
@@ -18,6 +20,26 @@ const OrganismsProductsList = () => {
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [image, setImage] = useState("");
+
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] =
+    useState<IOrganismsProductsListDetails | null>(null);
+
+  const handleOpenDetails = (productId: number) => {
+    const product = data?.products.find((item) => item.id === productId);
+    if (!product) return;
+
+    setSelectedProduct({
+      handleCloseModal: () => setIsDetailsModalOpen(false),
+      name: product.name,
+      description: product.description,
+      price: String(product.price),
+      quantity: String(product.quantity),
+      image: product.image,
+    });
+
+    setIsDetailsModalOpen(true);
+  };
 
   const { data, loading, error, refetch } = useFetchProducts();
 
@@ -105,7 +127,7 @@ const OrganismsProductsList = () => {
         {error && <p>Erro ao buscar dados: {error}</p>}
         {!loading && !error && (
           <MoleculesTable
-            headers={["id", "nome do produto", "Quantidade", "imagem"]}
+            headers={["id", "nome do produto", "Quantidade", "imagem", ""]}
             rows={rows.map((row) => row.values)}
             renderExtra={(rowIndex: number) => (
               <button
@@ -113,6 +135,14 @@ const OrganismsProductsList = () => {
                 onClick={() => handleDeleteProduct(rows[rowIndex].id)}
               >
                 Excluir
+              </button>
+            )}
+            details={(rowIndex: number) => (
+              <button
+                className={style.button_details}
+                onClick={() => handleOpenDetails(rows[rowIndex].id)}
+              >
+                Detalhes
               </button>
             )}
           />
@@ -146,7 +176,7 @@ const OrganismsProductsList = () => {
             errors={[]}
           />
           <MoleculesFormInputFloatLabel
-            label="quantidade do produto*"
+            label="Quantidade do produto*"
             value={quantity}
             onInput={setQuantity}
             mask="quantity"
@@ -160,6 +190,17 @@ const OrganismsProductsList = () => {
           />
         </div>
       </MoleculesModal>
+      {selectedProduct && isDetailsModalOpen && (
+        <OrganismsProductListDetails
+          isModalOpen={isDetailsModalOpen}
+          handleCloseModal={() => setIsDetailsModalOpen(false)}
+          name={selectedProduct.name}
+          description={selectedProduct.description}
+          price={selectedProduct.price}
+          quantity={selectedProduct.quantity}
+          image={selectedProduct.image}
+        />
+      )}
     </>
   );
 };
