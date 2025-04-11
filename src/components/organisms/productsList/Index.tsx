@@ -1,6 +1,7 @@
 import { useState } from "react";
 import MoleculesTable from "@/components/molecules/Table/Index";
 import MoleculesHeader from "@/components/molecules/Header/Index";
+import MoleculesModalAside from "@/components/molecules/Modal/Aside/Index";
 import MoleculesModal from "@/components/molecules/Modal/Index";
 import MoleculesFormInputFloatLabel from "@/components/molecules/FormInputFloatLabel/Input";
 import style from "./styles.module.scss";
@@ -15,6 +16,7 @@ import { toast, Toaster } from "react-hot-toast";
 
 const OrganismsProductsList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalFiltersOpen, setIsModalFiltersOpen] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -118,7 +120,10 @@ const OrganismsProductsList = () => {
 
   return (
     <>
-      <MoleculesHeader actionButton={() => setIsModalOpen(true)} />
+      <MoleculesHeader
+        actionButton={() => setIsModalOpen(true)}
+        filterButton={() => setIsModalFiltersOpen(true)}
+      />
       <Toaster />
       <section
         className={`${style.content} ${loading || error ? "loading" : ""}`}
@@ -190,6 +195,15 @@ const OrganismsProductsList = () => {
           />
         </div>
       </MoleculesModal>
+      <MoleculesModalAside
+        isOpen={isModalFiltersOpen}
+        textSave="Aplicar filtro"
+        title="Adicionar Produto"
+        onSave={addProduct}
+        onCancel={() => setIsModalFiltersOpen(false)}
+      >
+        <div>teste</div>
+      </MoleculesModalAside>
       {selectedProduct && isDetailsModalOpen && (
         <OrganismsProductListDetails
           isModalOpen={isDetailsModalOpen}
