@@ -3,17 +3,26 @@ import style from "./styles.module.scss";
 
 type MoleculesHeaderProps = {
   actionButton: () => void;
+  filterButton: () => void;
 };
 
-const MoleculesHeader = ({ actionButton }: MoleculesHeaderProps) => {
+const MoleculesHeader = ({
+  actionButton,
+  filterButton,
+}: MoleculesHeaderProps) => {
   return (
     <section className={style.header}>
       <AtomsText fontSize="24px" fontWeight="bold" color="#fff">
         Listagem
       </AtomsText>
-      <button className={style.button} onClick={actionButton}>
-        Adicionar
-      </button>
+      <div className={style.header__actions}>
+        <button className={style.button} onClick={actionButton}>
+          Adicionar
+        </button>
+        <button className={style.button} onClick={filterButton}>
+          Filtro
+        </button>
+      </div>
     </section>
   );
 };

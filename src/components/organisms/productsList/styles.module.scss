@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   gap: 24px;
+  overflow-x: auto;
 
   .button_delete {
     padding: 8px 16px;
