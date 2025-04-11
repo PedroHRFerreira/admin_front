@@ -29,7 +29,7 @@ const OrganismsProductListDetails = ({
           />
           <MoleculesFormInputFloatLabel
             label="Descrição"
-            value={description}
+            value={description || ""}
             errors={[]}
           />
           <MoleculesFormInputFloatLabel
@@ -46,7 +46,7 @@ const OrganismsProductListDetails = ({
           />
           <MoleculesFormInputFloatLabel
             label="Imagem do produto"
-            value={image}
+            value={image || ""}
             errors={[]}
           />
         </div>
