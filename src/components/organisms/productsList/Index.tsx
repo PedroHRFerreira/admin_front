@@ -1,6 +1,7 @@
 import { useState } from "react";
 import MoleculesTable from "@/components/molecules/Table/Index";
 import MoleculesHeader from "@/components/molecules/Header/Index";
+import MoleculesModalAside from "@/components/molecules/Modal/Aside/Index";
 import MoleculesModal from "@/components/molecules/Modal/Index";
 import MoleculesFormInputFloatLabel from "@/components/molecules/FormInputFloatLabel/Input";
 import style from "./styles.module.scss";
@@ -15,11 +16,20 @@ import { toast, Toaster } from "react-hot-toast";
 
 const OrganismsProductsList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalFiltersOpen, setIsModalFiltersOpen] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [image, setImage] = useState("");
+
+  const [filterName, setFilterName] = useState("");
+  const [filterPrice, setFilterPrice] = useState("");
+  const [filterQuantity, setFilterQuantity] = useState("");
+
+  const [appliedFilterName, setAppliedFilterName] = useState("");
+  const [appliedFilterPrice, setAppliedFilterPrice] = useState("");
+  const [appliedFilterQuantity, setAppliedFilterQuantity] = useState("");
 
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] =
@@ -41,7 +51,11 @@ const OrganismsProductsList = () => {
     setIsDetailsModalOpen(true);
   };
 
-  const { data, loading, error, refetch } = useFetchProducts();
+  const { data, loading, error, refetch } = useFetchProducts({
+    name: appliedFilterName,
+    price: appliedFilterPrice,
+    quantity: appliedFilterQuantity,
+  });
 
   const handleDeleteProduct = async (id: number) => {
     const response = await useDeleteProducts(id);
@@ -107,6 +121,22 @@ const OrganismsProductsList = () => {
     refetch();
   };
 
+  const resetFilters = () => {
+    setFilterName("");
+    setFilterPrice("");
+    setFilterQuantity("");
+
+    setAppliedFilterName("");
+    setAppliedFilterPrice("");
+    setAppliedFilterQuantity("");
+  };
+
+  const aplyFilters = () => {
+    setAppliedFilterName(filterName);
+    setAppliedFilterPrice(filterPrice);
+    setAppliedFilterQuantity(filterQuantity);
+  };
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setName("");
@@ -118,7 +148,10 @@ const OrganismsProductsList = () => {
 
   return (
     <>
-      <MoleculesHeader actionButton={() => setIsModalOpen(true)} />
+      <MoleculesHeader
+        actionButton={() => setIsModalOpen(true)}
+        filterButton={() => setIsModalFiltersOpen(true)}
+      />
       <Toaster />
       <section
         className={`${style.content} ${loading || error ? "loading" : ""}`}
@@ -190,6 +223,44 @@ const OrganismsProductsList = () => {
           />
         </div>
       </MoleculesModal>
+      <MoleculesModalAside
+        isOpen={isModalFiltersOpen}
+        textSave="Aplicar filtro"
+        title="Filtro"
+        onSave={() => {
+          setIsModalFiltersOpen(false);
+          aplyFilters();
+          refetch();
+        }}
+        onCancel={() => {
+          setIsModalFiltersOpen(false);
+          resetFilters();
+          refetch();
+        }}
+      >
+        <div>
+          <MoleculesFormInputFloatLabel
+            label="Nome do produto"
+            value={filterName}
+            onInput={setFilterName}
+            errors={[]}
+          />
+          <MoleculesFormInputFloatLabel
+            label="Preço do produto"
+            value={filterPrice}
+            onInput={setFilterPrice}
+            mask="currency"
+            errors={[]}
+          />
+          <MoleculesFormInputFloatLabel
+            label="Quantidade do produto"
+            value={filterQuantity}
+            onInput={setFilterQuantity}
+            mask="quantity"
+            errors={[]}
+          />
+        </div>
+      </MoleculesModalAside>
       {selectedProduct && isDetailsModalOpen && (
         <OrganismsProductListDetails
           isModalOpen={isDetailsModalOpen}
