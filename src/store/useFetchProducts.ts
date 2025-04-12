@@ -9,13 +9,25 @@ export interface product {
   quantity: number;
 }
 
+export interface filter {
+  name?: string;
+  price?: string;
+  quantity?: string;
+}
+
 export interface ProductsData {
   products: product[];
   status: string;
 }
 
-export function useFetchProducts() {
-  const url = "http://localhost:8000/api/products";
+export function useFetchProducts(filters?: filter) {
+  const queryParams = new URLSearchParams();
+
+  if (filters?.name) queryParams.append("name", filters.name);
+  if (filters?.price) queryParams.append("price", filters.price);
+  if (filters?.quantity) queryParams.append("quantity", filters.quantity);
+
+  const url = `http://localhost:8000/api/products?${queryParams.toString()}`;
   return useFetch<ProductsData>(url);
 }
 

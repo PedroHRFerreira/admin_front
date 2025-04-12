@@ -23,6 +23,14 @@ const OrganismsProductsList = () => {
   const [quantity, setQuantity] = useState("");
   const [image, setImage] = useState("");
 
+  const [filterName, setFilterName] = useState("");
+  const [filterPrice, setFilterPrice] = useState("");
+  const [filterQuantity, setFilterQuantity] = useState("");
+
+  const [appliedFilterName, setAppliedFilterName] = useState("");
+  const [appliedFilterPrice, setAppliedFilterPrice] = useState("");
+  const [appliedFilterQuantity, setAppliedFilterQuantity] = useState("");
+
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] =
     useState<IOrganismsProductsListDetails | null>(null);
@@ -43,7 +51,11 @@ const OrganismsProductsList = () => {
     setIsDetailsModalOpen(true);
   };
 
-  const { data, loading, error, refetch } = useFetchProducts();
+  const { data, loading, error, refetch } = useFetchProducts({
+    name: appliedFilterName,
+    price: appliedFilterPrice,
+    quantity: appliedFilterQuantity,
+  });
 
   const handleDeleteProduct = async (id: number) => {
     const response = await useDeleteProducts(id);
@@ -107,6 +119,22 @@ const OrganismsProductsList = () => {
     toast.success("Produto adicionado com sucesso!");
     handleCloseModal();
     refetch();
+  };
+
+  const resetFilters = () => {
+    setFilterName("");
+    setFilterPrice("");
+    setFilterQuantity("");
+
+    setAppliedFilterName("");
+    setAppliedFilterPrice("");
+    setAppliedFilterQuantity("");
+  };
+
+  const aplyFilters = () => {
+    setAppliedFilterName(filterName);
+    setAppliedFilterPrice(filterPrice);
+    setAppliedFilterQuantity(filterQuantity);
   };
 
   const handleCloseModal = () => {
@@ -198,11 +226,40 @@ const OrganismsProductsList = () => {
       <MoleculesModalAside
         isOpen={isModalFiltersOpen}
         textSave="Aplicar filtro"
-        title="Adicionar Produto"
-        onSave={addProduct}
-        onCancel={() => setIsModalFiltersOpen(false)}
+        title="Filtro"
+        onSave={() => {
+          setIsModalFiltersOpen(false);
+          aplyFilters();
+          refetch();
+        }}
+        onCancel={() => {
+          setIsModalFiltersOpen(false);
+          resetFilters();
+          refetch();
+        }}
       >
-        <div>teste</div>
+        <div>
+          <MoleculesFormInputFloatLabel
+            label="Nome do produto"
+            value={filterName}
+            onInput={setFilterName}
+            errors={[]}
+          />
+          <MoleculesFormInputFloatLabel
+            label="Preço do produto"
+            value={filterPrice}
+            onInput={setFilterPrice}
+            mask="currency"
+            errors={[]}
+          />
+          <MoleculesFormInputFloatLabel
+            label="Quantidade do produto"
+            value={filterQuantity}
+            onInput={setFilterQuantity}
+            mask="quantity"
+            errors={[]}
+          />
+        </div>
       </MoleculesModalAside>
       {selectedProduct && isDetailsModalOpen && (
         <OrganismsProductListDetails

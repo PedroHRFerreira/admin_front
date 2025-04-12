@@ -5,7 +5,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+
     z-index: 60;
     display: flex;
     justify-content: flex-end;
@@ -20,7 +20,7 @@
     height: 100vh;
     background-color: #202124;
 
-    z-index: 30;
+    z-index: 100;
     display: flex;
     flex-direction: column;
     padding: 1rem;
@@ -44,6 +44,21 @@
     flex: 1;
     margin-top: 1rem;
     overflow-y: auto;
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      margin-bottom: 16px;
+      background-color: #303134;
+      border: 1px solid #303134;
+      border-radius: 4px;
+      color: #e8eaed;
+      outline: none;
+    }
   }
 
   &__actions {
@@ -120,10 +135,8 @@
 @keyframes modalOut {
   0% {
     transform: translateX(0);
-    opacity: 1;
   }
   100% {
     transform: translateX(150%);
-    opacity: 0;
   }
 }

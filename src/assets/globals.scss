@@ -159,7 +159,7 @@ a {
   background-size: 300%;
   pointer-events: none;
   border-radius: 5px;
-  z-index: 99;
+  z-index: 60;
   animation: loadingEffect 2s infinite;
 }
 @keyframes loadingEffect {
