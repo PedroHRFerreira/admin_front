@@ -88,7 +88,7 @@ const OrganismsDailyValue = () => {
         onCancel={close}
       >
         <MoleculesFormInputFloatLabel
-          label="valor ganho"
+          label="valor ganho*"
           value={value}
           onInput={setValue}
           mask="currency"
@@ -96,7 +96,7 @@ const OrganismsDailyValue = () => {
         />
 
         <MoleculesFormInputFloatLabel
-          label="quantidade vendida"
+          label="quantidade vendida*"
           value={quantity}
           onInput={setQuantity}
           mask="quantity"
@@ -104,14 +104,14 @@ const OrganismsDailyValue = () => {
         />
 
         <MoleculesFormInputFloatLabel
-          label="Tipo de venda"
+          label="Tipo de venda*"
           value={name}
           onInput={setName}
           errors={[]}
         />
 
         <MoleculesFormInputFloatLabel
-          label="Descrição da venda"
+          label="Descrição da venda*"
           value={description}
           onInput={setDescription}
           errors={[]}
