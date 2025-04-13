@@ -1,0 +1,19 @@
+.content {
+  padding-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  .modal {
+    margin: 0 auto;
+    width: 60%;
+
+    .difference {
+      margin-left: 35px;
+    }
+  }
+
+  @media (max-width: 1151px) {
+    flex-wrap: wrap;
+  }
+}

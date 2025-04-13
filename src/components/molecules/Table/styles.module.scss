@@ -1,6 +1,6 @@
 .table {
   width: 100%;
-  height: auto;
+  height: 100%;
   border: 1px solid #a8a295;
   border-radius: 6px;
   border-collapse: collapse;
@@ -18,7 +18,7 @@
     .table__row {
       display: table-row;
       width: 100%;
-      height: auto;
+      height: 100%;
 
       &:hover {
         background-color: #5d5d5d;
