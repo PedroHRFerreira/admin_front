@@ -45,17 +45,17 @@ const OrganismsDataExpenses = () => {
   const progress =
     previousSaleValue === 0
       ? 100
-      : currentSaleValue >= previousSaleValue
-      ? 100
       : (currentSaleValue / previousSaleValue) * 100;
 
+  const isIncreased = currentSaleValue > previousSaleValue;
+
   const progressStyles = buildStyles({
-    pathColor: progress < 100 ? "red" : "green",
+    pathColor: isIncreased ? "red" : "green",
     trailColor: "#d6d6d6",
-    textColor: progress < 100 ? "red" : "green",
+    textColor: isIncreased ? "red" : "green",
   });
 
-  const difference = previousSaleValue - currentSaleValue;
+  const difference = Math.abs(currentSaleValue - previousSaleValue);
 
   return (
     <>
@@ -82,15 +82,27 @@ const OrganismsDataExpenses = () => {
               value={progress}
               styles={progressStyles}
             >
-              {progress < 100 ? (
-                <AtomsText fontSize="16px" fontWeight="bold" color="red">
-                  {`Faltam ${difference.toFixed(
+              {isIncreased ? (
+                <AtomsText
+                  className={styles.difference}
+                  fontSize="14px"
+                  fontWeight="bold"
+                  color="red"
+                >
+                  {`Valor R$ ${difference.toFixed(
                     2
-                  )} para atingir o mês anterior`}
+                  )} a mais que o mês anterior`}
                 </AtomsText>
               ) : (
-                <AtomsText fontSize="16px" fontWeight="bold" color="green">
-                  R$ {currentSaleValue}
+                <AtomsText
+                  className={styles.difference}
+                  fontSize="14px"
+                  fontWeight="bold"
+                  color="green"
+                >
+                  {`Valor R$ ${difference.toFixed(
+                    2
+                  )} a menos que o mês anterior`}
                 </AtomsText>
               )}
             </CircularProgressbarWithChildren>
