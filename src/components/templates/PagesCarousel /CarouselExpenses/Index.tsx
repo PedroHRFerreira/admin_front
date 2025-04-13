@@ -5,7 +5,7 @@ import AtomsText from "@/components/atoms/Text/Index";
 
 import OrganismsGraphicExpenses from "@/components/organisms/Graphic/Expenses/Index";
 import OrganismsDataExpenses from "@/components/organisms/Data/Expenses/Index";
-import OrganismsSalesList from "@/components/organisms/SalesList/Index";
+import OrganismsExpensesList from "@/components/organisms/ExpensesList/Index";
 
 const TemplatesCarouselExpenses = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -20,7 +20,7 @@ const TemplatesCarouselExpenses = () => {
     },
     {
       name: "Listagem",
-      component: OrganismsSalesList,
+      component: OrganismsExpensesList,
     },
   ];
 

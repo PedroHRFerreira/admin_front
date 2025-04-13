@@ -31,11 +31,6 @@ const OrganismsDailyValueExpenses = () => {
       expenses_current: Number(
         expensesCurrent.replace("R$", "").replace(",", ".")
       ),
-      highest_spending_product: "",
-      lowest_spending_product: "",
-      expenses_previous: "",
-      expenses_next: "",
-      expenses_products: "",
     };
 
     try {
