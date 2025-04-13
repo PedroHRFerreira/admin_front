@@ -2,7 +2,7 @@ import AtomsText from "@/components/atoms/Text/Index";
 import style from "./styles.module.scss";
 
 type MoleculesHeaderProps = {
-  actionButton: () => void;
+  actionButton?: () => void;
   filterButton: () => void;
 };
 
@@ -16,9 +16,11 @@ const MoleculesHeader = ({
         Listagem
       </AtomsText>
       <div className={style.header__actions}>
-        <button className={style.button} onClick={actionButton}>
-          Adicionar
-        </button>
+        {actionButton && (
+          <button className={style.button} onClick={actionButton}>
+            Adicionar
+          </button>
+        )}
         <button className={style.button} onClick={filterButton}>
           Filtro
         </button>

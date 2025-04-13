@@ -10,6 +10,7 @@ export interface IExpenses {
 }
 
 export interface IFilter {
+  month?: string;
   expenses_current?: string;
   highest_spending_product?: string;
 }

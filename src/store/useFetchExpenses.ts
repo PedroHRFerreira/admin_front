@@ -8,13 +8,7 @@ import type {
 export function useFetchExpenses(filters?: IFilter) {
   const queryParams = new URLSearchParams();
 
-  if (filters?.expenses_current)
-    queryParams.append("expenses_current", filters.expenses_current);
-  if (filters?.highest_spending_product)
-    queryParams.append(
-      "highest_spending_product",
-      filters.highest_spending_product
-    );
+  if (filters?.month) queryParams.append("month", filters.month);
 
   const url = `http://localhost:8000/api/expenses?${queryParams.toString()}`;
   return useFetch<IExpensesData>(url);

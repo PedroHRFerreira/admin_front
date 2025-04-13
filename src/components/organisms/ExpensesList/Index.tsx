@@ -1,11 +1,21 @@
-import AtomsText from "@/components/atoms/Text/Index";
+import { useState } from "react";
+import MoleculesHeader from "@/components/molecules/Header/Index";
+import MoleculesModalAside from "@/components/molecules/Modal/Aside/Index";
 import MoleculesTable from "@/components/molecules/Table/Index";
+import MoleculesFormInputFloatLabel from "@/components/molecules/FormInputFloatLabel/Input";
 import style from "./styles.module.scss";
 import { useFetchExpenses, useDeleteExpenses } from "@/store/useFetchExpenses";
 import { toast, Toaster } from "react-hot-toast";
 
 const OrganismsExpensesList = () => {
-  const { data, loading, error, refetch } = useFetchExpenses();
+  const [isModalFiltersOpen, setIsModalFiltersOpen] = useState(false);
+  const [filterMonth, setFilterMonth] = useState("");
+  const [appliedFilterMonth, setAppliedFilterMonth] = useState("");
+
+  console.log("appliedFilterMonth", appliedFilterMonth);
+  const { data, loading, error, refetch } = useFetchExpenses({
+    month: appliedFilterMonth,
+  });
 
   const handleDeleteProduct = async (id: number) => {
     const response = await useDeleteExpenses(id);
@@ -31,11 +41,18 @@ const OrganismsExpensesList = () => {
       ],
     })) ?? [];
 
+  const aplyFilters = () => {
+    setAppliedFilterMonth(filterMonth);
+  };
+
+  const resetFilters = () => {
+    setFilterMonth("");
+    setAppliedFilterMonth("");
+  };
+
   return (
     <>
-      <AtomsText fontSize="24px" fontWeight="bold" color="#fff">
-        Listagem
-      </AtomsText>
+      <MoleculesHeader filterButton={() => setIsModalFiltersOpen(true)} />
       <Toaster />
       <section
         className={`${style.content} ${loading || error ? "loading" : ""}`}
@@ -47,8 +64,8 @@ const OrganismsExpensesList = () => {
             headers={[
               "id",
               "Mês",
-              "mês atual",
-              "mês anterior",
+              "Valor do mês atual",
+              "Valor do mês anterior",
               "Gastos com produtos",
             ]}
             rows={expensesRows.map((expenses) => expenses.values)}
@@ -63,6 +80,30 @@ const OrganismsExpensesList = () => {
           />
         )}
       </section>
+      <MoleculesModalAside
+        isOpen={isModalFiltersOpen}
+        textSave="Aplicar filtro"
+        title="Filtro"
+        onSave={() => {
+          setIsModalFiltersOpen(false);
+          aplyFilters();
+          refetch();
+        }}
+        onCancel={() => {
+          setIsModalFiltersOpen(false);
+          resetFilters();
+          refetch();
+        }}
+      >
+        <div>
+          <MoleculesFormInputFloatLabel
+            label="Mês"
+            value={filterMonth}
+            onInput={setFilterMonth}
+            errors={[]}
+          />
+        </div>
+      </MoleculesModalAside>
     </>
   );
 };
