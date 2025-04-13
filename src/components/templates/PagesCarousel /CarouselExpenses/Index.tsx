@@ -4,7 +4,7 @@ import AtomsIconSvg from "@/components/atoms/IconSvg/index";
 import AtomsText from "@/components/atoms/Text/Index";
 
 import OrganismsGraphicExpenses from "@/components/organisms/Graphic/Expenses/Index";
-import OrganismsData from "@/components/organisms/Data/Index";
+import OrganismsDataExpenses from "@/components/organisms/Data/Expenses/Index";
 import OrganismsSalesList from "@/components/organisms/SalesList/Index";
 
 const TemplatesCarouselExpenses = () => {
@@ -16,7 +16,7 @@ const TemplatesCarouselExpenses = () => {
     },
     {
       name: "Dados",
-      component: OrganismsData,
+      component: OrganismsDataExpenses,
     },
     {
       name: "Listagem",

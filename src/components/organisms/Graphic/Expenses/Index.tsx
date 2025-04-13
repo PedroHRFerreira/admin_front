@@ -14,7 +14,6 @@ import {
   ChartOptions,
 } from "chart.js";
 
-// Registrando os elementos para gráfico de linha
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -25,7 +24,6 @@ ChartJS.register(
   Legend
 );
 
-// Importando dinamicamente o componente Line
 const Line = dynamic(() => import("react-chartjs-2").then((mod) => mod.Line), {
   ssr: false,
 });
