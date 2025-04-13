@@ -4,7 +4,7 @@ import AtomsText from "@/components/atoms/Text/Index";
 import { useFetchExpenses } from "@/store/useFetchExpenses";
 import MoleculesDashboard from "@/components/molecules/Dashboard/Index";
 import MoleculesModal from "@/components/molecules/Modal/Index";
-import OrganismsDailyValue from "@/components/organisms/DailyValue/Index";
+import OrganismsDailyValueExpenses from "@/components/organisms/DailyValue/Expenses/Index";
 import {
   CircularProgressbarWithChildren,
   buildStyles,
@@ -15,47 +15,25 @@ const OrganismsDataExpenses = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data } = useFetchExpenses();
 
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
-  const currentMonth = new Date().toLocaleString("en-US", { month: "long" });
-  const currentMonthSales =
-    data?.expenses?.filter((sale) => sale.month === currentMonth) || [];
-  const currentMonthIndex = months.indexOf(currentMonth);
-  const previousMonth =
-    currentMonthIndex > 0 ? months[currentMonthIndex - 1] : months[11];
-  const previousMonthSale = data?.expenses?.find(
-    (sale) => sale.month === previousMonth
+  const currentMonthName = new Date().toLocaleString("en-US", {
+    month: "long",
+  });
+  const currentMonthData = data?.expenses?.find(
+    (item) => item.month === currentMonthName
   );
-  const currentSaleValue = currentMonthSales[0]?.expenses_current || 0;
-  const previousSaleValue = previousMonthSale?.expenses_previous || 0;
 
-  const progress =
-    previousSaleValue === 0
-      ? 100
-      : (currentSaleValue / previousSaleValue) * 100;
+  const current = currentMonthData?.expenses_current || 0;
+  const previous = currentMonthData?.expenses_previous || 0;
 
-  const isIncreased = currentSaleValue > previousSaleValue;
+  const progress = previous === 0 ? 100 : (current / previous) * 100;
+  const isIncreased = current > previous;
+  const difference = Math.abs(current - previous);
 
   const progressStyles = buildStyles({
     pathColor: isIncreased ? "red" : "green",
     trailColor: "#d6d6d6",
     textColor: isIncreased ? "red" : "green",
   });
-
-  const difference = Math.abs(currentSaleValue - previousSaleValue);
 
   return (
     <>
@@ -69,7 +47,7 @@ const OrganismsDataExpenses = () => {
           text="Ver detalhes"
           onFooterClick={() => setIsModalOpen(true)}
         />
-        <OrganismsDailyValue />
+        <OrganismsDailyValueExpenses />
         <MoleculesModal
           isOpen={isModalOpen}
           textSave=""
@@ -82,29 +60,16 @@ const OrganismsDataExpenses = () => {
               value={progress}
               styles={progressStyles}
             >
-              {isIncreased ? (
-                <AtomsText
-                  className={styles.difference}
-                  fontSize="14px"
-                  fontWeight="bold"
-                  color="red"
-                >
-                  {`Valor R$ ${difference.toFixed(
-                    2
-                  )} a mais que o mês anterior`}
-                </AtomsText>
-              ) : (
-                <AtomsText
-                  className={styles.difference}
-                  fontSize="14px"
-                  fontWeight="bold"
-                  color="green"
-                >
-                  {`Valor R$ ${difference.toFixed(
-                    2
-                  )} a menos que o mês anterior`}
-                </AtomsText>
-              )}
+              <AtomsText
+                className={styles.difference}
+                fontSize="14px"
+                fontWeight="bold"
+                color={isIncreased ? "red" : "green"}
+              >
+                {`Valor R$ ${difference.toFixed(2)} ${
+                  isIncreased ? "a mais" : "a menos"
+                } que o mês anterior`}
+              </AtomsText>
             </CircularProgressbarWithChildren>
           </div>
         </MoleculesModal>

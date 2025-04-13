@@ -1,5 +1,9 @@
 import { useFetch } from "@/hooks/useFetch";
-import type { IFilter, IExpensesData } from "@/types/expenses/expenses";
+import type {
+  IExpenses,
+  IFilter,
+  IExpensesData,
+} from "@/types/expenses/expenses";
 
 export function useFetchExpenses(filters?: IFilter) {
   const queryParams = new URLSearchParams();
@@ -16,17 +20,17 @@ export function useFetchExpenses(filters?: IFilter) {
   return useFetch<IExpensesData>(url);
 }
 
-// export async function usePostProducts(newProduct: product) {
-//   const response = await fetch("http://localhost:8000/api/products", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(newProduct),
-//   });
+export async function usePostExpenses(newExpense: IExpenses) {
+  const response = await fetch("http://localhost:8000/api/expenses", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newExpense),
+  });
 
-//   return response.json();
-// }
+  return response.json();
+}
 
 // export async function useDeleteProducts(id: number) {
 //   const response = await fetch(`http://localhost:8000/api/products/${id}`, {
