@@ -27,12 +27,12 @@ export function useFetchProducts(filters?: filter) {
   if (filters?.price) queryParams.append("price", filters.price);
   if (filters?.quantity) queryParams.append("quantity", filters.quantity);
 
-  const url = `http://localhost:8000/api/products?${queryParams.toString()}`;
+  const url = `http://localhost/api/products?${queryParams.toString()}`;
   return useFetch<ProductsData>(url);
 }
 
 export async function usePostProducts(newProduct: product) {
-  const response = await fetch("http://localhost:8000/api/products", {
+  const response = await fetch("http://localhost/api/products", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -44,7 +44,7 @@ export async function usePostProducts(newProduct: product) {
 }
 
 export async function useDeleteProducts(id: number) {
-  const response = await fetch(`http://localhost:8000/api/products/${id}`, {
+  const response = await fetch(`http://localhost/api/products/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
