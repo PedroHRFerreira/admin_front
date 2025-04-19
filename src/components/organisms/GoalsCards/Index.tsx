@@ -28,8 +28,8 @@ const OrganismsGoalsCards = () => {
         {!loading && !error && (
           <section className={style.cardsGrid}>
             {data.goals.map((goal) => {
-              const isCompleted = goal.completed === 1;
-              const isPending = goal.completed === 0;
+              const isCompleted = goal.completed === true;
+              const isPending = goal.completed === false;
               return (
                 <div
                   key={goal.id}
@@ -48,12 +48,13 @@ const OrganismsGoalsCards = () => {
           </section>
         )}
       </aside>
+
       {activeGoal && (
         <div className={style.overlay} onClick={closeModal}>
           <div
             className={`${style.modalCard} ${
-              activeGoal.completed === 1 ? style.completed : ""
-            } ${activeGoal.completed === 0 ? style.pending : ""}`}
+              activeGoal.completed === true ? style.completed : ""
+            } ${activeGoal.completed === false ? style.pending : ""}`}
             onClick={(e) => e.stopPropagation()}
           >
             <div className={style.content}>
