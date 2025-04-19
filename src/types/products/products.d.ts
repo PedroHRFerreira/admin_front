@@ -14,6 +14,6 @@ export interface IFilter {
 }
 
 export interface IProductsData {
-  products: product[];
+  products: IProduct[];
   status: string;
 }
