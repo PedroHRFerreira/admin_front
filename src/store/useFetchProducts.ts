@@ -1,26 +1,11 @@
 import { useFetch } from "@/hooks/useFetch";
+import type {
+  IProduct,
+  IFilter,
+  IProductsData,
+} from "@/types/products/products";
 
-export interface product {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  quantity: number;
-}
-
-export interface filter {
-  name?: string;
-  price?: string;
-  quantity?: string;
-}
-
-export interface ProductsData {
-  products: product[];
-  status: string;
-}
-
-export function useFetchProducts(filters?: filter) {
+export function useFetchProducts(filters?: IFilter) {
   const queryParams = new URLSearchParams();
 
   if (filters?.name) queryParams.append("name", filters.name);
@@ -28,10 +13,10 @@ export function useFetchProducts(filters?: filter) {
   if (filters?.quantity) queryParams.append("quantity", filters.quantity);
 
   const url = `http://localhost/api/products?${queryParams.toString()}`;
-  return useFetch<ProductsData>(url);
+  return useFetch<IProductsData>(url);
 }
 
-export async function usePostProducts(newProduct: product) {
+export async function usePostProducts(newProduct: IProduct) {
   const response = await fetch("http://localhost/api/products", {
     method: "POST",
     headers: {
