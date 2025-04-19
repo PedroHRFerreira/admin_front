@@ -18,12 +18,12 @@ export interface SalesData {
 }
 
 export function useFetchSales() {
-  const url = "http://localhost:8000/api/sales";
+  const url = "http://localhost/api/sales";
   return useFetch<SalesData>(url);
 }
 
 export async function usePostSales(newSales: SaleMonth) {
-  const response = await fetch("http://localhost:8000/api/sales", {
+  const response = await fetch("http://localhost/api/sales", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -35,7 +35,7 @@ export async function usePostSales(newSales: SaleMonth) {
 }
 
 export async function useDeleteSales(id: number) {
-  const response = await fetch(`http://localhost:8000/api/sales/${id}`, {
+  const response = await fetch(`http://localhost/api/sales/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
