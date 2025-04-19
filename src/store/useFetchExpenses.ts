@@ -10,12 +10,12 @@ export function useFetchExpenses(filters?: IFilter) {
 
   if (filters?.month) queryParams.append("month", filters.month);
 
-  const url = `http://localhost:8000/api/expenses?${queryParams.toString()}`;
+  const url = `http://localhost/api/expenses?${queryParams.toString()}`;
   return useFetch<IExpensesData>(url);
 }
 
 export async function usePostExpenses(newExpense: IExpenses) {
-  const response = await fetch("http://localhost:8000/api/expenses", {
+  const response = await fetch("http://localhost/api/expenses", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -27,7 +27,7 @@ export async function usePostExpenses(newExpense: IExpenses) {
 }
 
 export async function useDeleteExpenses(id: number) {
-  const response = await fetch(`http://localhost:8000/api/expenses/${id}`, {
+  const response = await fetch(`http://localhost/api/expenses/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
