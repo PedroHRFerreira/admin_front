@@ -10,7 +10,6 @@ const MoleculesTable = ({ headers, rows, renderExtra, details }: any) => {
               {header}
             </th>
           ))}
-          <th className={style.table__th}>Ações</th>
         </tr>
       </thead>
       <tbody className={style.table__tbody}>
@@ -21,14 +20,10 @@ const MoleculesTable = ({ headers, rows, renderExtra, details }: any) => {
                 {cell}
               </td>
             ))}
-            <td className={style.table__td}>
-              {renderExtra ? renderExtra(rowIndex) : null}
-            </td>
-            {details && (
-              <td className={style.table__td}>
-                {details ? details(rowIndex) : null}
-              </td>
-            )}
+            <div className={style.table__extra}>
+              <td>{renderExtra ? renderExtra(rowIndex) : null}</td>
+              {details && <td>{details ? details(rowIndex) : null}</td>}
+            </div>
           </tr>
         ))}
       </tbody>
