@@ -27,7 +27,7 @@ const OrganismsSalesList = () => {
         item.name,
         item.month,
         item.quantity.toString(),
-        item.value,
+        `R$ ${item.value}`,
       ],
     })) ?? [];
 
