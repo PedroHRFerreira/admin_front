@@ -27,7 +27,7 @@ const OrganismsSalesList = () => {
         item.name,
         item.month,
         item.quantity.toString(),
-        item.value,
+        `R$ ${item.value}`,
       ],
     })) ?? [];
 
@@ -44,7 +44,7 @@ const OrganismsSalesList = () => {
         {error && <p>Erro ao buscar dados: {error}</p>}
         {!loading && !error && (
           <MoleculesTable
-            headers={["id", "Produto", "Mês", "Quantidade", "Preço"]}
+            headers={["id", "Produto", "Mês", "Quantidade", "Preço", "Ações"]}
             rows={salesRows.map((row) => row.values)}
             renderExtra={(rowIndex: number) => (
               <button

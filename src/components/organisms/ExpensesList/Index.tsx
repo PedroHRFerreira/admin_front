@@ -35,9 +35,9 @@ const OrganismsExpensesList = () => {
       values: [
         item.id,
         item.month,
-        item.expenses_current,
-        item.expenses_previous,
-        item.expenses_products,
+        `R$ ${item.expenses_current}`,
+        `R$ ${item.expenses_previous || 0}`,
+        `R$ ${item.expenses_products}`,
       ],
     })) ?? [];
 
@@ -67,6 +67,7 @@ const OrganismsExpensesList = () => {
               "Valor do mês atual",
               "Valor do mês anterior",
               "Gastos com produtos",
+              "Ações",
             ]}
             rows={expensesRows.map((expenses) => expenses.values)}
             renderExtra={(rowIndex: number) => (

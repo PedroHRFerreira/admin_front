@@ -1,6 +1,6 @@
 .carousel {
   background: transparent;
-  max-width: 1589px;
+  max-width: 100%;
   min-height: 775px;
   max-height: 800px;
   z-index: 999;
@@ -54,9 +54,10 @@
     }
 
     .button {
-      width: 15%;
+      width: 200px;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 12px;
       background-color: rgba(255, 255, 255, 0.1);
       color: #fff;
