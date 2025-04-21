@@ -1,6 +1,6 @@
 export interface IMoleculesTableProps {
   headers: string[];
-  rows: string[][] | (string | number)[][];
+  rows: (string | number)[][];
   renderExtra?: (rowIndex: number) => React.ReactNode;
   details?: (rowIndex: number) => React.ReactNode;
 }

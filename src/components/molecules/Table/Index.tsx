@@ -1,40 +1,41 @@
+import React from "react";
 import style from "./styles.module.scss";
 import type { IMoleculesTableProps } from "./MoleculesTable.types";
 
-const MoleculesTable = ({
+const MoleculesTable: React.FC<IMoleculesTableProps> = ({
   headers,
   rows,
   renderExtra,
   details,
-}: IMoleculesTableProps) => {
-  return (
-    <table className={style.table}>
-      <thead className={style.table__header}>
-        <tr>
-          {headers.map((header: string, index: number) => (
-            <th key={index} className={style.table__th}>
-              {header}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody className={style.table__tbody}>
-        {rows.map((row: string[], rowIndex: number) => (
-          <tr key={rowIndex} className={style.table__row}>
-            {row.map((cell, cellIndex) => (
-              <td key={cellIndex} className={style.table__td}>
-                {cell}
-              </td>
-            ))}
-            <div className={style.table__extra}>
-              <td>{renderExtra ? renderExtra(rowIndex) : null}</td>
-              {details && <td>{details ? details(rowIndex) : null}</td>}
-            </div>
-          </tr>
+}) => (
+  <table className={style.table}>
+    <thead className={style.table__header}>
+      <tr>
+        {headers.map((header, idx) => (
+          <th key={idx} className={style.table__th}>
+            {header}
+          </th>
         ))}
-      </tbody>
-    </table>
-  );
-};
+      </tr>
+    </thead>
+    <tbody className={style.table__tbody}>
+      {rows.map((row, rowIndex) => (
+        <tr key={rowIndex} className={style.table__row}>
+          {row.map((cell, cellIndex) => (
+            <td key={cellIndex} className={style.table__td}>
+              {cell}
+            </td>
+          ))}
+          {renderExtra && (
+            <td className={style.table__extra}>{renderExtra(rowIndex)}</td>
+          )}
+          {details && (
+            <td className={style.table__details}>{details(rowIndex)}</td>
+          )}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+);
 
 export default MoleculesTable;
