@@ -4,6 +4,7 @@ export interface IGoals {
   description: string;
   completed: boolean | number;
   image_url: string;
+  goals: IGoals[];
 }
 
 export interface IGoalsData {
