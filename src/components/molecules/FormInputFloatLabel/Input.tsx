@@ -1,19 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { quantityMask, currencyMask } from "@/utils/masks";
+import type { IMoleculesFormInputFloatLabelProps } from "./MoleculesFormInputFloatLabel.types";
 import styles from "./styles.module.scss";
 
-interface MoleculesFormInputFloatLabelProps {
-  label: string;
-  isRequired?: boolean;
-  type?: string;
-  errors?: string[];
-  value?: string;
-  mask?: "quantity" | "currency";
-  onInput?: (value: string) => void;
-}
-
 const MoleculesFormInputFloatLabel: React.FC<
-  MoleculesFormInputFloatLabelProps
+  IMoleculesFormInputFloatLabelProps
 > = ({
   label,
   isRequired = false,
