@@ -1,6 +1,6 @@
 import { useFetch } from "@/hooks/useFetch";
 import type {
-  IExpenses,
+  IExpensesPost,
   IFilter,
   IExpensesData,
 } from "@/types/expenses/expenses";
@@ -14,7 +14,7 @@ export function useFetchExpenses(filters?: IFilter) {
   return useFetch<IExpensesData>(url);
 }
 
-export async function usePostExpenses(newExpense: IExpenses) {
+export async function usePostExpenses(newExpense: IExpensesPost) {
   const response = await fetch("http://localhost/api/expenses", {
     method: "POST",
     headers: {

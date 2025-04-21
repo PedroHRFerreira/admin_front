@@ -9,6 +9,11 @@ export interface IExpenses {
   lowest_cost_product: number;
 }
 
+export interface IExpensesPost {
+  month: string;
+  expenses_current: number;
+}
+
 export interface IFilter {
   month?: string;
   expenses_current?: string;
