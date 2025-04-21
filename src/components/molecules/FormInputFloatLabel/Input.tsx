@@ -5,15 +5,7 @@ import styles from "./styles.module.scss";
 
 const MoleculesFormInputFloatLabel: React.FC<
   IMoleculesFormInputFloatLabelProps
-> = ({
-  label,
-  isRequired = false,
-  type = "text",
-  errors = [],
-  value = "",
-  mask,
-  onInput,
-}) => {
+> = ({ label, type = "text", value = "", mask, onInput }) => {
   const [inputValue, setInputValue] = useState(value);
 
   useEffect(() => {
@@ -31,7 +23,7 @@ const MoleculesFormInputFloatLabel: React.FC<
   };
 
   return (
-    <div className={`${styles.formInput} ${isRequired ? styles.required : ""}`}>
+    <div className={styles.formInput}>
       <div className={`${styles.wrapperInput}`}>
         <label className={styles.labelPlaceholder}>{label}</label>
         <input
