@@ -193,33 +193,28 @@ const OrganismsProductsList = () => {
             label="Nome do produto*"
             value={name}
             onInput={setName}
-            errors={[]}
           />
           <MoleculesFormInputFloatLabel
             label="Descrição"
             value={description}
             onInput={setDescription}
-            errors={[]}
           />
           <MoleculesFormInputFloatLabel
             label="Preço do produto*"
             value={price}
             onInput={setPrice}
             mask="currency"
-            errors={[]}
           />
           <MoleculesFormInputFloatLabel
             label="Quantidade do produto*"
             value={quantity}
             onInput={setQuantity}
             mask="quantity"
-            errors={[]}
           />
           <MoleculesFormInputFloatLabel
             label="Imagem do produto"
             value={image}
             onInput={setImage}
-            errors={[]}
           />
         </div>
       </MoleculesModal>
@@ -243,21 +238,18 @@ const OrganismsProductsList = () => {
             label="Nome do produto"
             value={filterName}
             onInput={setFilterName}
-            errors={[]}
           />
           <MoleculesFormInputFloatLabel
             label="Preço do produto"
             value={filterPrice}
             onInput={setFilterPrice}
             mask="currency"
-            errors={[]}
           />
           <MoleculesFormInputFloatLabel
             label="Quantidade do produto"
             value={filterQuantity}
             onInput={setFilterQuantity}
             mask="quantity"
-            errors={[]}
           />
         </div>
       </MoleculesModalAside>

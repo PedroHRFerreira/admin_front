@@ -1,12 +1,12 @@
 import { useFetch } from "@/hooks/useFetch";
-import type { ISales, ISalesData } from "@/types/sales/sales";
+import type { ISalesData, ISalesPost } from "@/types/sales/sales";
 
 export function useFetchSales() {
   const url = "http://localhost/api/sales";
   return useFetch<ISalesData>(url);
 }
 
-export async function usePostSales(newSales: ISales) {
+export async function usePostSales(newSales: ISalesPost) {
   const response = await fetch("http://localhost/api/sales", {
     method: "POST",
     headers: {

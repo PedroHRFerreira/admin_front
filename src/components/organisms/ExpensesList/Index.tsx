@@ -101,7 +101,6 @@ const OrganismsExpensesList = () => {
             label="Mês"
             value={filterMonth}
             onInput={setFilterMonth}
-            errors={[]}
           />
         </div>
       </MoleculesModalAside>

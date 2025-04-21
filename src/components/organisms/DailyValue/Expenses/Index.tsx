@@ -70,7 +70,6 @@ const OrganismsDailyValueExpenses = () => {
           value={expensesCurrent}
           onInput={setExpensesCurrent}
           mask="currency"
-          errors={[]}
         />
       </MoleculesModal>
     </>

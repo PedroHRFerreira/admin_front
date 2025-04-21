@@ -1,15 +1,11 @@
 import AtomsText from "@/components/atoms/Text/Index";
 import style from "./styles.module.scss";
-
-type MoleculesHeaderProps = {
-  actionButton?: () => void;
-  filterButton: () => void;
-};
+import type { IMoleculesHeaderProps } from "./MoleculesHeader.types";
 
 const MoleculesHeader = ({
   actionButton,
   filterButton,
-}: MoleculesHeaderProps) => {
+}: IMoleculesHeaderProps) => {
   return (
     <section className={style.header}>
       <AtomsText fontSize="24px" fontWeight="bold" color="#fff">

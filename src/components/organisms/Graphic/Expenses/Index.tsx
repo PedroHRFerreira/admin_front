@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import style from "./styles.module.scss";
 import AtomsText from "@/components/atoms/Text/Index";
 import { useFetchExpenses } from "@/store/useFetchExpenses";
 import {
@@ -54,11 +53,7 @@ const OrganismsGraphicExpenses = () => {
   };
 
   return (
-    <section
-      className={`${style.organismsGraphic} ${
-        loading || error ? "loading" : ""
-      }`}
-    >
+    <section className={`${loading || error ? "loading" : ""}`}>
       {loading && <div className="anim-loading"></div>}
       {error && <p>Erro ao buscar dados: {error}</p>}
       {!loading && !error && (

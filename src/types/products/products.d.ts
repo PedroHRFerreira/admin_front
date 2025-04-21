@@ -7,6 +7,14 @@ export interface IProduct {
   quantity: number;
 }
 
+export interface IProductPost {
+  name: string;
+  description: string;
+  price: string | number;
+  image: string;
+  quantity: number;
+}
+
 export interface IFilter {
   name?: string;
   price?: string;
