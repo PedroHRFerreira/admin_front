@@ -1,6 +1,6 @@
 import { useFetch } from "@/hooks/useFetch";
 import type {
-  IProduct,
+  IProductPost,
   IFilter,
   IProductsData,
 } from "@/types/products/products";
@@ -16,7 +16,7 @@ export function useFetchProducts(filters?: IFilter) {
   return useFetch<IProductsData>(url);
 }
 
-export async function usePostProducts(newProduct: IProduct) {
+export async function usePostProducts(newProduct: IProductPost) {
   const response = await fetch("http://localhost/api/products", {
     method: "POST",
     headers: {

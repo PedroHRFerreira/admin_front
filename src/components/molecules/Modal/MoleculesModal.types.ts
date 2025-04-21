@@ -1,5 +1,5 @@
 export interface IMoleculesModalProps {
-  isOpen: boolean;
+  isOpen: boolean | undefined;
   title: string;
   children: React.ReactNode;
   loading?: any;

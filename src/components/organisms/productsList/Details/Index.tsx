@@ -22,32 +22,24 @@ const OrganismsProductListDetails = ({
         onCancel={handleCloseModal}
       >
         <div className={style.modal}>
-          <MoleculesFormInputFloatLabel
-            label="Nome do produto*"
-            value={name}
-            errors={[]}
-          />
+          <MoleculesFormInputFloatLabel label="Nome do produto*" value={name} />
           <MoleculesFormInputFloatLabel
             label="Descrição"
             value={description || ""}
-            errors={[]}
           />
           <MoleculesFormInputFloatLabel
             label="Preço do produto*"
             value={price}
             mask="currency"
-            errors={[]}
           />
           <MoleculesFormInputFloatLabel
             label="Quantidade do produto*"
             value={quantity}
             mask="quantity"
-            errors={[]}
           />
           <MoleculesFormInputFloatLabel
             label="Imagem do produto"
             value={image || ""}
-            errors={[]}
           />
         </div>
       </MoleculesModal>
