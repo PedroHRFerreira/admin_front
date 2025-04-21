@@ -1,6 +1,12 @@
 import style from "./styles.module.scss";
+import type { IMoleculesTableProps } from "./MoleculesTable.types";
 
-const MoleculesTable = ({ headers, rows, renderExtra, details }: any) => {
+const MoleculesTable = ({
+  headers,
+  rows,
+  renderExtra,
+  details,
+}: IMoleculesTableProps) => {
   return (
     <table className={style.table}>
       <thead className={style.table__header}>
