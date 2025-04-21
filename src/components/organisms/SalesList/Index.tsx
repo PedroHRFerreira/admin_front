@@ -45,7 +45,7 @@ const OrganismsSalesList = () => {
         {!loading && !error && (
           <MoleculesTable
             headers={["id", "Produto", "Mês", "Quantidade", "Preço", "Ações"]}
-            rows={salesRows.map((row) => row.values)}
+            rows={salesRows.map((row: any) => row.values)}
             renderExtra={(rowIndex: number) => (
               <button
                 className={style.button_delete}
