@@ -10,6 +10,14 @@ export interface ISales {
   id: number;
 }
 
+export interface ISalesPost {
+  month: string;
+  value: number;
+  quantity: number;
+  name: string;
+  description: string;
+}
+
 export interface ISalesData {
   sales: ISales[];
   status: string;
