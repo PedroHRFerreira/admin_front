@@ -14,20 +14,22 @@
     white-space: nowrap;
   }
 
-  &__extra {
-    height: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+  &__extra,
+  &__details {
+    padding: 16px;
+    border-bottom: 1px solid #a8a295;
+
+    &_content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 100%;
+    }
   }
 
   &__tbody {
     .table__row {
-      display: table-row;
-      width: 100%;
-      height: 100%;
-
       &:hover {
         background-color: #5d5d5d;
       }
