@@ -8,17 +8,10 @@
     display: flex;
     align-items: center;
 
-    &:focus-within .labelPlaceholder,
-    input:not(:placeholder-shown) + .labelPlaceholder {
-      transform: translate(0px, -120%);
-      padding: 0 4px;
-    }
-
     .labelPlaceholder {
       position: absolute;
-      top: 43%;
+      top: 0%;
       left: 13px;
-      transform: translateY(-50%);
       pointer-events: none;
 
       background: transparent;

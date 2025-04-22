@@ -27,10 +27,18 @@ const MoleculesTable: React.FC<IMoleculesTableProps> = ({
             </td>
           ))}
           {renderExtra && (
-            <td className={style.table__extra}>{renderExtra(rowIndex)}</td>
+            <td className={style.table__extra}>
+              <div className={style.table__extra_content}>
+                {renderExtra(rowIndex)}
+              </div>
+            </td>
           )}
           {details && (
-            <td className={style.table__details}>{details(rowIndex)}</td>
+            <td className={style.table__details}>
+              <div className={style.table__details_content}>
+                {details(rowIndex)}
+              </div>
+            </td>
           )}
         </tr>
       ))}
