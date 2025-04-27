@@ -2,9 +2,11 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import style from "./styles.module.scss";
 import AtomsIconSvg from "@/components/atoms/IconSvg/index";
+import { useFetchUsers } from "@/store/UseFetchUsers";
 
 const OrganismsNavBar = () => {
   const router = useRouter();
+  const { data } = useFetchUsers();
 
   const paginate = [
     { id: 1, icon: "home", route: "/", name: "Home" },
@@ -12,6 +14,8 @@ const OrganismsNavBar = () => {
     { id: 3, icon: "money", route: "/gastos", name: "Gastos" },
     { id: 4, icon: "rocket", route: "/metas", name: "Metas" },
   ];
+
+  console.log("data", data);
 
   return (
     <aside className={style.aside}>
