@@ -4,6 +4,6 @@ export interface IUsers {
   email: string;
 }
 export interface IUsersData {
-  sales: IUsers[];
+  users: IUsers[];
   status: string;
 }

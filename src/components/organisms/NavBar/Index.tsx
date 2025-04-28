@@ -15,7 +15,15 @@ const OrganismsNavBar = () => {
     { id: 4, icon: "rocket", route: "/metas", name: "Metas" },
   ];
 
-  console.log("data", data);
+  if (!data) return;
+
+  const mapAdmin = data?.users.map((item) => {
+    return {
+      id: item.id,
+      name: item.name,
+      email: item.email,
+    };
+  });
 
   return (
     <aside className={style.aside}>
@@ -35,7 +43,7 @@ const OrganismsNavBar = () => {
       <section className={style.aside__footer}>
         <div className={style.aside__footer__admin}>
           <AtomsIconSvg width="32px" height="32px" name="user" />
-          Admin
+          {mapAdmin[0].name}
         </div>
       </section>
     </aside>
