@@ -27,7 +27,12 @@ const OrganismsNavBar = () => {
         </button>
       )}
 
-      <aside className={`${style.aside} ${!isOpen ? style.aside__closed : ""}`}>
+      <aside
+        className={`${style.aside} ${!isOpen ? style.aside__closed : ""}`}
+        style={{
+          width: isOpen ? "200px" : "0px",
+        }}
+      >
         {isOpen && (
           <div onClick={handleToggleAside}>
             <AtomsIconSvg className={`${style.aside__icon}`} name="seta" />
