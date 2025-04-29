@@ -7,8 +7,8 @@ import MoleculesFormInputFloatLabel from "@/components/molecules/FormInputFloatL
 import style from "./styles.module.scss";
 import {
   useFetchProducts,
-  useDeleteProducts,
-  usePostProducts,
+  DeleteProducts,
+  PostProducts,
 } from "@/store/useFetchProducts";
 import OrganismsProductListDetails from "./Details/Index";
 import type { IOrganismsProductsListDetails } from "./Details/OrganismsProductsListDetails.types";
@@ -58,7 +58,7 @@ const OrganismsProductsList = () => {
   });
 
   const handleDeleteProduct = async (id: number) => {
-    const response = await useDeleteProducts(id);
+    const response = await DeleteProducts(id);
 
     if (response?.status === "error") {
       toast.error("Erro ao remover o produto!");
@@ -109,7 +109,7 @@ const OrganismsProductsList = () => {
       image,
     };
 
-    const response = await usePostProducts(form);
+    const response = await PostProducts(form);
 
     if (response?.status === "error") {
       toast.error("Erro ao adicionar esse produto!");
