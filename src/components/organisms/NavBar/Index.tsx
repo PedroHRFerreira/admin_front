@@ -28,10 +28,9 @@ const OrganismsNavBar = () => {
       )}
 
       <aside
-        className={`${style.aside} ${!isOpen ? style.aside__closed : ""}`}
-        style={{
-          width: isOpen ? "200px" : "0px",
-        }}
+        className={`${style.aside} ${
+          isOpen ? style.aside__open : style.aside__closed
+        }`}
       >
         {isOpen && (
           <div onClick={handleToggleAside}>
