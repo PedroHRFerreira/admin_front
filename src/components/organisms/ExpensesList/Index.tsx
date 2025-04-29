@@ -4,7 +4,7 @@ import MoleculesModalAside from "@/components/molecules/Modal/Aside/Index";
 import MoleculesTable from "@/components/molecules/Table/Index";
 import MoleculesFormInputFloatLabel from "@/components/molecules/FormInputFloatLabel/Input";
 import style from "./styles.module.scss";
-import { useFetchExpenses, useDeleteExpenses } from "@/store/useFetchExpenses";
+import { useFetchExpenses, DeleteExpenses } from "@/store/useFetchExpenses";
 import { toast, Toaster } from "react-hot-toast";
 
 const OrganismsExpensesList = () => {
@@ -18,7 +18,7 @@ const OrganismsExpensesList = () => {
   });
 
   const handleDeleteProduct = async (id: number) => {
-    const response = await useDeleteExpenses(id);
+    const response = await DeleteExpenses(id);
 
     if (response?.status === "error") {
       toast.error("Erro ao remover esse Gasto");

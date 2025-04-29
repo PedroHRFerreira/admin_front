@@ -26,7 +26,7 @@ export async function PostExpenses(newExpense: IExpensesPost) {
   return response.json();
 }
 
-export async function useDeleteExpenses(id: number) {
+export async function DeleteExpenses(id: number) {
   const response = await fetch(`http://localhost/api/expenses/${id}`, {
     method: "DELETE",
     headers: {
