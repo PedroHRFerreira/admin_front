@@ -7,6 +7,7 @@ import { useFetchUsers } from "@/store/UseFetchUsers";
 
 const OrganismsNavBar = () => {
   const [isOpen, setIsOpen] = useState(true);
+  const [showOpenButton, setShowOpenButton] = useState(false);
   const router = useRouter();
   const { data } = useFetchUsers();
 
@@ -18,7 +19,14 @@ const OrganismsNavBar = () => {
   ];
 
   const handleToggleAside = () => {
-    setIsOpen((prev) => !prev);
+    if (isOpen) {
+      setIsOpen(false);
+      setTimeout(() => setShowOpenButton(true), 1000);
+      return;
+    }
+
+    setShowOpenButton(false);
+    setIsOpen(true);
   };
 
   if (!data) return;
@@ -33,8 +41,11 @@ const OrganismsNavBar = () => {
 
   return (
     <>
-      {!isOpen && (
-        <button className={style.openButton} onClick={handleToggleAside}>
+      {showOpenButton && (
+        <button
+          className={`${style.openButton} ${style["openButton--visible"]}`}
+          onClick={handleToggleAside}
+        >
           &gt;&gt;
         </button>
       )}

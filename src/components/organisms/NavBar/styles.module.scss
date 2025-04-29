@@ -83,6 +83,7 @@ $width: 200px;
 }
 
 .openButton {
+  display: none;
   position: absolute;
   top: 100px;
   left: 0px;
@@ -100,6 +101,10 @@ $width: 200px;
 
   &:hover {
     background: #07335b;
+  }
+
+  &--visible {
+    display: block;
   }
 }
 
