@@ -1,14 +1,14 @@
 import AtomsText from "@/components/atoms/Text/Index";
 import MoleculesTable from "@/components/molecules/Table/Index";
 import style from "./styles.module.scss";
-import { useFetchSales, useDeleteSales } from "@/store/useFetchSales";
+import { useFetchSales, DeleteSales } from "@/store/useFetchSales";
 import { toast, Toaster } from "react-hot-toast";
 
 const OrganismsSalesList = () => {
   const { data, loading, error, refetch } = useFetchSales();
 
   const handleDeleteProduct = async (id: number) => {
-    const response = await useDeleteSales(id);
+    const response = await DeleteSales(id);
 
     if (response?.status === "error") {
       toast.error("Erro ao remover essa venda");

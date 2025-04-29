@@ -18,7 +18,7 @@ export async function PostSales(newSales: ISalesPost) {
   return response.json();
 }
 
-export async function useDeleteSales(id: number) {
+export async function DeleteSales(id: number) {
   const response = await fetch(`http://localhost/api/sales/${id}`, {
     method: "DELETE",
     headers: {
