@@ -6,7 +6,7 @@ export function useFetchSales() {
   return useFetch<ISalesData>(url);
 }
 
-export async function usePostSales(newSales: ISalesPost) {
+export async function PostSales(newSales: ISalesPost) {
   const response = await fetch("http://localhost/api/sales", {
     method: "POST",
     headers: {

@@ -3,7 +3,7 @@ import { toast, Toaster } from "react-hot-toast";
 import MoleculesDashboard from "@/components/molecules/Dashboard/Index";
 import MoleculesModal from "@/components/molecules/Modal/Index";
 import MoleculesFormInputFloatLabel from "@/components/molecules/FormInputFloatLabel/Input";
-import { usePostSales } from "@/store/useFetchSales";
+import { PostSales } from "@/store/useFetchSales";
 
 const OrganismsDailyValue = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -56,7 +56,7 @@ const OrganismsDailyValue = () => {
     };
 
     try {
-      const result = await usePostSales(form);
+      const result = await PostSales(form);
 
       if (result?.status === "error") {
         toast.error("Erro ao salvar os dados");
