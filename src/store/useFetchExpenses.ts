@@ -14,7 +14,7 @@ export function useFetchExpenses(filters?: IFilter) {
   return useFetch<IExpensesData>(url);
 }
 
-export async function usePostExpenses(newExpense: IExpensesPost) {
+export async function PostExpenses(newExpense: IExpensesPost) {
   const response = await fetch("http://localhost/api/expenses", {
     method: "POST",
     headers: {
