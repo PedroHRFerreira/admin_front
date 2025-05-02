@@ -70,12 +70,12 @@ const OrganismsProfile = ({
             <MoleculesFormInputFloatLabel
               label="Criação do perfil"
               value={datetimeMask(mapAdmin[0].created_at)}
-              onInput={setName}
+              disabled={true}
             />
             <MoleculesFormInputFloatLabel
               label="Alteração do perfil"
               value={datetimeMask(mapAdmin[0].updated_at)}
-              onInput={setEmail}
+              disabled={true}
             />
           </>
         )}

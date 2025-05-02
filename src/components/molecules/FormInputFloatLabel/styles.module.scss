@@ -27,6 +27,12 @@
       &::placeholder {
         color: transparent;
       }
+
+      &:disabled {
+        background-color: #00000054;
+        cursor: not-allowed;
+        color: #999;
+      }
     }
   }
 }
