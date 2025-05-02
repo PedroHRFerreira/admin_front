@@ -29,7 +29,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <OrganismsSearchMenu showModal={() => setShowModal(true)} />
         <OrganismsProfile
           isShow={showModal}
-          title="Editar Perfil"
           onSave={() => setShowModal(false)}
           onCancel={() => setShowModal(false)}
         />
