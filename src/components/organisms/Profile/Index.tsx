@@ -15,6 +15,15 @@ const OrganismsProfile = ({
     }
     return "Editar Perfil";
   };
+
+  if (!data) return;
+  const mapAdmin = data?.users.map((item) => {
+    return {
+      id: item.id,
+      name: item.name,
+      email: item.email,
+    };
+  });
   return (
     <MoleculesModalAside
       isOpen={isShow}
@@ -27,8 +36,8 @@ const OrganismsProfile = ({
         {!data && <div>Criar Perfil</div>}
         {data && (
           <>
-            <div>Nome: {data.users[0].name}</div>
-            <div>Email: {data.users[0].email}</div>
+            <div>Nome: {mapAdmin[0].name}</div>
+            <div>Email: {mapAdmin[0].email}</div>
           </>
         )}
       </section>
