@@ -69,9 +69,11 @@ $box-shadow-color: rgba(0, 0, 0, 0.3);
 }
 
 .modalFooter {
+  width: 100%;
   margin-top: 24px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  gap: 8px;
 
   button {
     padding: 10px 20px;
@@ -80,16 +82,39 @@ $box-shadow-color: rgba(0, 0, 0, 0.3);
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    font-size: 14px;
+    font-size: 16px;
 
     &.cancel {
-      background-color: $secondary-color;
-      color: #fff;
+      width: 50%;
+      background: linear-gradient(145deg, #dc3545, #c82333);
+      color: #f8f9fa;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        background: linear-gradient(145deg, #c82333, #bd2130);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+      }
     }
 
     &.save {
-      background-color: $primary-color;
-      color: #fff;
+      width: 50%;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(25, 59, 92, 0.3);
+      transition: border 0.5s ease-in-out;
+      border: 2px solid rgba(11, 39, 65, 0.8);
+      color: #f8f9fa;
+
+      &:hover {
+        border: 2px solid rgba(255, 255, 255, 0.2);
+      }
     }
   }
 }
