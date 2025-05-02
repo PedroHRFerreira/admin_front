@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { datetimeMask } from "@/utils/masks";
 import style from "./styles.module.scss";
 import MoleculesModalAside from "@/components/molecules/Modal/Aside/Index";
 import MoleculesFormInputFloatLabel from "@/components/molecules/FormInputFloatLabel/Input";
@@ -68,12 +69,12 @@ const OrganismsProfile = ({
             />
             <MoleculesFormInputFloatLabel
               label="Criação do perfil"
-              value={mapAdmin[0].created_at}
+              value={datetimeMask(mapAdmin[0].created_at)}
               onInput={setName}
             />
             <MoleculesFormInputFloatLabel
               label="Alteração do perfil"
-              value={mapAdmin[0].updated_at}
+              value={datetimeMask(mapAdmin[0].updated_at)}
               onInput={setEmail}
             />
           </>
