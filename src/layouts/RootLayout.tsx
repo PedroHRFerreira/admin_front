@@ -35,7 +35,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </header>
       <main className={style.main}>
         <aside className={style.aside}>
-          <OrganismsNavBar />
+          <OrganismsNavBar actionButton={() => setShowModal(true)} />
         </aside>
         <article className={style.article}>{children}</article>
       </main>
