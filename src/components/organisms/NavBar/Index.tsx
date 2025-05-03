@@ -5,7 +5,7 @@ import style from "./styles.module.scss";
 import AtomsIconSvg from "@/components/atoms/IconSvg/index";
 import { useFetchUsers } from "@/store/UseFetchUsers";
 
-const OrganismsNavBar = () => {
+const OrganismsNavBar = ({ actionButton }: { actionButton?: () => void }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [showOpenButton, setShowOpenButton] = useState(false);
   const router = useRouter();
@@ -80,8 +80,19 @@ const OrganismsNavBar = () => {
         {isOpen && (
           <section className={style.aside__footer}>
             <div className={style.aside__footer__admin}>
-              <AtomsIconSvg width="32px" height="32px" name="user" />
-              {mapAdmin[0].name}
+              {!data && (
+                <>
+                  <AtomsIconSvg width="32px" height="32px" name="user" />
+                  {mapAdmin[0].name}
+                </>
+              )}
+              {data && (
+                <>
+                  <button className={style.button} onClick={actionButton}>
+                    Cadastrar
+                  </button>
+                </>
+              )}
             </div>
           </section>
         )}
