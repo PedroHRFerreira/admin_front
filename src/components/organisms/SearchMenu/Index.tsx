@@ -21,7 +21,7 @@ const OrganismsSearchMenu = ({ showModal }: any) => {
           className={style.nav__modal__icon}
           width="32px"
           height="32px"
-          name="file"
+          name="user"
         />
       </section>
     </nav>
