@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import { datetimeMask } from "@/utils/masks";
 import style from "./styles.module.scss";
@@ -6,17 +6,36 @@ import MoleculesModalAside from "@/components/molecules/Modal/Aside/Index";
 import MoleculesFormInputFloatLabel from "@/components/molecules/FormInputFloatLabel/Input";
 import type { IOrganismsProfileProps } from "./organismsProfile.types";
 import { useFetchUsers, PostUsers, UpdateUsers } from "@/store/UseFetchUsers";
+
 const OrganismsProfile = ({ isShow, onCancel }: IOrganismsProfileProps) => {
   const { data, refetch } = useFetchUsers();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const differenceTitle = () => {
-    if (!data) {
-      return "Criar Perfil";
+  const [updateName, setUpdateName] = useState("");
+  const [updateEmail, setUpdateEmail] = useState("");
+
+  useEffect(() => {
+    if (data && data.users.length > 0) {
+      setUpdateName(data.users[0].name || "");
+      setUpdateEmail(data.users[0].email || "");
     }
-    return "Editar Perfil";
+  }, [data]);
+
+  if (!data) return null;
+
+  const mapAdmin = data?.users.map((item) => ({
+    id: item?.id,
+    name: item?.name,
+    email: item?.email,
+    created_at: item?.created_at,
+    updated_at: item?.updated_at,
+  }));
+
+  const differenceTitle = () => {
+    return mapAdmin.length === 0 ? "Criar Perfil" : "Editar Perfil";
   };
 
   const validate = () => {
@@ -32,44 +51,28 @@ const OrganismsProfile = ({ isShow, onCancel }: IOrganismsProfileProps) => {
       toast.error("Informe uma senha antes de salvar.");
       return false;
     }
-
     return true;
   };
 
   const handlePost = async () => {
-    const isValid = validate();
-    if (!isValid) return;
-    await PostUsers({
-      name,
-      email,
-      password,
-    });
+    if (!validate()) return;
+    await PostUsers({ name, email, password });
     refetch();
+    toast.success("Perfil criado com sucesso.");
   };
 
   const handleUpdate = async () => {
-    const isValid = validate();
-    if (!isValid) return;
     await UpdateUsers(
       {
-        name,
-        email,
+        name: updateName,
+        email: updateEmail,
       },
       data.users[0].id
     );
     refetch();
+    toast.success("Perfil atualizado com sucesso.");
   };
 
-  if (!data) return;
-  const mapAdmin = data?.users.map((item) => {
-    return {
-      id: item?.id,
-      name: item?.name,
-      email: item?.email,
-      created_at: item?.created_at,
-      updated_at: item?.updated_at,
-    };
-  });
   return (
     <MoleculesModalAside
       isOpen={isShow}
@@ -80,7 +83,7 @@ const OrganismsProfile = ({ isShow, onCancel }: IOrganismsProfileProps) => {
     >
       <Toaster />
       <section className={style.container}>
-        {mapAdmin.length === 0 && (
+        {mapAdmin.length === 0 ? (
           <>
             <MoleculesFormInputFloatLabel
               label="Criar nome do perfil*"
@@ -99,18 +102,17 @@ const OrganismsProfile = ({ isShow, onCancel }: IOrganismsProfileProps) => {
               onInput={setPassword}
             />
           </>
-        )}
-        {mapAdmin.length > 0 && (
+        ) : (
           <>
             <MoleculesFormInputFloatLabel
               label="Editar nome do perfil*"
-              value={mapAdmin[0].name}
-              onInput={setName}
+              value={updateName}
+              onInput={setUpdateName}
             />
             <MoleculesFormInputFloatLabel
               label="Editar email do perfil*"
-              value={mapAdmin[0].email}
-              onInput={setEmail}
+              value={updateEmail}
+              onInput={setUpdateEmail}
             />
             <MoleculesFormInputFloatLabel
               label="Criação do perfil"
