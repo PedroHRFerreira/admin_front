@@ -4,4 +4,5 @@ export interface IMoleculesFormInputFloatLabelProps {
   value?: string;
   mask?: "quantity" | "currency";
   onInput?: (value: string) => void;
+  disabled?: boolean;
 }

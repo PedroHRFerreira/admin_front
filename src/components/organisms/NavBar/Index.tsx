@@ -2,11 +2,14 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Link from "next/link";
 import style from "./styles.module.scss";
-import AtomsIconSvg from "@/components/atoms/IconSvg";
+import AtomsIconSvg from "@/components/atoms/IconSvg/index";
+import { useFetchUsers } from "@/store/UseFetchUsers";
 
-const OrganismsNavBar = () => {
+const OrganismsNavBar = ({ actionButton }: { actionButton?: () => void }) => {
   const [isOpen, setIsOpen] = useState(true);
+  const [showOpenButton, setShowOpenButton] = useState(false);
   const router = useRouter();
+  const { data } = useFetchUsers();
 
   const paginate = [
     { id: 1, icon: "home", route: "/", name: "Home" },
@@ -16,13 +19,33 @@ const OrganismsNavBar = () => {
   ];
 
   const handleToggleAside = () => {
-    setIsOpen((prev) => !prev);
+    if (isOpen) {
+      setIsOpen(false);
+      setTimeout(() => setShowOpenButton(true), 1000);
+      return;
+    }
+
+    setShowOpenButton(false);
+    setIsOpen(true);
   };
+
+  if (!data) return;
+
+  const mapAdmin = data?.users.map((item) => {
+    return {
+      id: item.id,
+      name: item.name,
+      email: item.email,
+    };
+  });
 
   return (
     <>
-      {!isOpen && (
-        <button className={style.openButton} onClick={handleToggleAside}>
+      {showOpenButton && (
+        <button
+          className={`${style.openButton} ${style["openButton--visible"]}`}
+          onClick={handleToggleAside}
+        >
           &gt;&gt;
         </button>
       )}
@@ -57,8 +80,19 @@ const OrganismsNavBar = () => {
         {isOpen && (
           <section className={style.aside__footer}>
             <div className={style.aside__footer__admin}>
-              <AtomsIconSvg width="32px" height="32px" name="user" />
-              Admin
+              {mapAdmin.length > 0 && (
+                <>
+                  <AtomsIconSvg width="32px" height="32px" name="user" />
+                  {mapAdmin[0]?.name}
+                </>
+              )}
+              {mapAdmin.length === 0 && (
+                <>
+                  <button className={style.button} onClick={actionButton}>
+                    Cadastrar
+                  </button>
+                </>
+              )}
             </div>
           </section>
         )}

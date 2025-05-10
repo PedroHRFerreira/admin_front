@@ -16,7 +16,7 @@ export function useFetchProducts(filters?: IFilter) {
   return useFetch<IProductsData>(url);
 }
 
-export async function usePostProducts(newProduct: IProductPost) {
+export async function PostProducts(newProduct: IProductPost) {
   const response = await fetch("http://localhost/api/products", {
     method: "POST",
     headers: {
@@ -28,7 +28,7 @@ export async function usePostProducts(newProduct: IProductPost) {
   return response.json();
 }
 
-export async function useDeleteProducts(id: number) {
+export async function DeleteProducts(id: number) {
   const response = await fetch(`http://localhost/api/products/${id}`, {
     method: "DELETE",
     headers: {

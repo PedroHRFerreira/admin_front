@@ -5,7 +5,7 @@ import styles from "./styles.module.scss";
 
 const MoleculesFormInputFloatLabel: React.FC<
   IMoleculesFormInputFloatLabelProps
-> = ({ label, type = "text", value = "", mask, onInput }) => {
+> = ({ label, type = "text", value = "", mask, onInput, disabled = false }) => {
   const [inputValue, setInputValue] = useState(value);
 
   useEffect(() => {
@@ -30,6 +30,7 @@ const MoleculesFormInputFloatLabel: React.FC<
           className={styles.inputText}
           value={inputValue}
           type={type}
+          disabled={disabled}
           onChange={handleChange}
         />
       </div>

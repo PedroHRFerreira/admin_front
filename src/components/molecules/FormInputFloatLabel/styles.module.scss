@@ -10,7 +10,7 @@
 
     .labelPlaceholder {
       position: absolute;
-      top: 0%;
+      top: -3px;
       left: 13px;
       pointer-events: none;
 
@@ -26,6 +26,12 @@
 
       &::placeholder {
         color: transparent;
+      }
+
+      &:disabled {
+        background-color: #00000054;
+        cursor: not-allowed;
+        color: #999;
       }
     }
   }

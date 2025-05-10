@@ -16,13 +16,12 @@ const OrganismsSearchMenu = ({ showModal }: any) => {
           Sistema Administrativo
         </AtomsText>
       </section>
-      <section className={style.nav__modal}>
+      <section className={style.nav__modal} onClick={showModal}>
         <AtomsIconSvg
           className={style.nav__modal__icon}
           width="32px"
           height="32px"
-          name="file"
-          clickIcon={showModal}
+          name="user"
         />
       </section>
     </nav>

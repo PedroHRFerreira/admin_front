@@ -8,6 +8,7 @@ const MoleculesModalAside = ({
   children,
   error,
   textSave = "Salvar",
+  textClear = "Limpar",
   onSave,
   onCancel,
 }: IMoleculesModalProps) => {
@@ -50,7 +51,7 @@ const MoleculesModalAside = ({
 
         <div className={style.modal__actions}>
           <button onClick={onCancel} className={style.modal__cancelBtn}>
-            Limpar
+            {textClear}
           </button>
           <button onClick={onSave} className={style.modal__saveBtn}>
             {textSave}

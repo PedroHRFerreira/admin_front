@@ -6,7 +6,7 @@ export function useFetchSales() {
   return useFetch<ISalesData>(url);
 }
 
-export async function usePostSales(newSales: ISalesPost) {
+export async function PostSales(newSales: ISalesPost) {
   const response = await fetch("http://localhost/api/sales", {
     method: "POST",
     headers: {
@@ -18,7 +18,7 @@ export async function usePostSales(newSales: ISalesPost) {
   return response.json();
 }
 
-export async function useDeleteSales(id: number) {
+export async function DeleteSales(id: number) {
   const response = await fetch(`http://localhost/api/sales/${id}`, {
     method: "DELETE",
     headers: {
