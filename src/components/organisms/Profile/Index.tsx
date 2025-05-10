@@ -5,13 +5,9 @@ import style from "./styles.module.scss";
 import MoleculesModalAside from "@/components/molecules/Modal/Aside/Index";
 import MoleculesFormInputFloatLabel from "@/components/molecules/FormInputFloatLabel/Input";
 import type { IOrganismsProfileProps } from "./organismsProfile.types";
-import { useFetchUsers, PostUsers } from "@/store/UseFetchUsers";
-const OrganismsProfile = ({
-  isShow,
-  onSave,
-  onCancel,
-}: IOrganismsProfileProps) => {
-  const { data } = useFetchUsers();
+import { useFetchUsers, PostUsers, UpdateUsers } from "@/store/UseFetchUsers";
+const OrganismsProfile = ({ isShow, onCancel }: IOrganismsProfileProps) => {
+  const { data, refetch } = useFetchUsers();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,25 +32,42 @@ const OrganismsProfile = ({
       toast.error("Informe uma senha antes de salvar.");
       return false;
     }
+
+    return true;
   };
 
   const handlePost = async () => {
-    if (!validate()) return;
+    const isValid = validate();
+    if (!isValid) return;
     await PostUsers({
       name,
       email,
       password,
     });
+    refetch();
+  };
+
+  const handleUpdate = async () => {
+    const isValid = validate();
+    if (!isValid) return;
+    await UpdateUsers(
+      {
+        name,
+        email,
+      },
+      data.users[0].id
+    );
+    refetch();
   };
 
   if (!data) return;
   const mapAdmin = data?.users.map((item) => {
     return {
-      id: item.id,
-      name: item.name,
-      email: item.email,
-      created_at: item.created_at,
-      updated_at: item.updated_at,
+      id: item?.id,
+      name: item?.name,
+      email: item?.email,
+      created_at: item?.created_at,
+      updated_at: item?.updated_at,
     };
   });
   return (
@@ -62,12 +75,12 @@ const OrganismsProfile = ({
       isOpen={isShow}
       textSave="Salvar"
       title={differenceTitle()}
-      onSave={!data ? handlePost : onSave}
+      onSave={mapAdmin.length === 0 ? handlePost : handleUpdate}
       onCancel={onCancel}
     >
       <Toaster />
       <section className={style.container}>
-        {!data && (
+        {mapAdmin.length === 0 && (
           <>
             <MoleculesFormInputFloatLabel
               label="Criar nome do perfil*"
@@ -87,7 +100,7 @@ const OrganismsProfile = ({
             />
           </>
         )}
-        {data && (
+        {mapAdmin.length > 0 && (
           <>
             <MoleculesFormInputFloatLabel
               label="Editar nome do perfil*"

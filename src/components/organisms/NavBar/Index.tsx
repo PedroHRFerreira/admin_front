@@ -80,13 +80,13 @@ const OrganismsNavBar = ({ actionButton }: { actionButton?: () => void }) => {
         {isOpen && (
           <section className={style.aside__footer}>
             <div className={style.aside__footer__admin}>
-              {data && (
+              {mapAdmin.length > 0 && (
                 <>
                   <AtomsIconSvg width="32px" height="32px" name="user" />
-                  {mapAdmin[0].name}
+                  {mapAdmin[0]?.name}
                 </>
               )}
-              {!data && (
+              {mapAdmin.length === 0 && (
                 <>
                   <button className={style.button} onClick={actionButton}>
                     Cadastrar
