@@ -13,6 +13,7 @@ const OrganismsProfile = ({
   const { data } = useFetchUsers();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const differenceTitle = () => {
     if (!data) {
@@ -52,6 +53,12 @@ const OrganismsProfile = ({
               label="Criar email do perfil*"
               value={email}
               onInput={setEmail}
+            />
+            <MoleculesFormInputFloatLabel
+              label="Criar senha do perfil*"
+              type="password"
+              value={password}
+              onInput={setPassword}
             />
           </>
         )}
