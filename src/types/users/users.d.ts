@@ -9,3 +9,9 @@ export interface IUsersData {
   users: IUsers[];
   status: string;
 }
+
+export interface IUsersPost {
+  name: string;
+  email: string;
+  password: string;
+}
